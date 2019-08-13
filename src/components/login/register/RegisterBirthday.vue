@@ -1,0 +1,86 @@
+<template>
+  <div>
+    <div class="progress">
+      <span class="bar"></span>
+    </div>
+    <div class="register_content">
+      <div class="title">您的生日？</div>
+      <div class="info">
+        <span>會員將享有專屬生日禮</span>
+      </div>
+      <div class="input_content">
+        <div class="input_item">
+          <input type="date" v-model="form.birthday" @input="validateNomal(form.birthday,'生日')" />
+        </div>
+        <div class="errorinfo_div" v-if="message.errortype">
+          <span class="errorinfo">{{message.errorStr}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot_div">
+      <div
+        class="continue"
+        v-bind:class="{ 'active' : message.continueType }"
+        @click="continueBtn"
+      >繼續</div>
+      <div class="defult_set" @click="noSetDef()">暫不提供</div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: {
+        errortype: false,
+        continueType: false,
+        errorStr: ""
+      },
+      form: {
+        birthday: ""
+      }
+    };
+  },
+  methods: {
+    continueBtn() {
+      if (this.message.continueType) {
+        this.$store.commit("rBirthday", this.form.birthday);
+        this.$router.push({
+          name: "RegisterMobile"
+        });
+        // this.message.continueType=false;
+        // TODO 目前会有一个回退到上一页就自动变红的问题
+      }
+    },
+    validateNomal(info, name) {
+      if (info == "") {
+        return this.$Message(name + "不能为空");
+      } else {
+        this.message.errortype = false;
+        this.message.continueType = true;
+        return true;
+      }
+    },
+    noSetDef() {
+      this.message.continueType = true;
+      this.form.birthday = "";
+      this.continueBtn();
+    }
+  }
+};
+</script>
+
+<style scoped>
+.progress .bar {
+  /* 第五步 */
+  width: 535px;
+  height: 8px;
+  background: #cd0505;
+  float: left;
+}
+/* 去掉生日默认样式 */
+input[type="date"] {
+  -webkit-appearance: none;
+}
+</style>
