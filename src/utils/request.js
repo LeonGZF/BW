@@ -31,7 +31,7 @@ service.interceptors.request.use(config => {
         if(browserVerify.verifyIos()){
             //判断IOS
             //不要用 Vue.$bridge !!!!!!!!!!!
-            Bridge.callhandler("setLoading", JSON.stringify(isloading), data => {});
+            window.webkit.messageHandlers.setLoading.postMessage(isloading);
         }
     }
     // Tip: 2 
@@ -73,7 +73,7 @@ service.interceptors.response.use(
             }
             if(browserVerify.verifyIos()){
                 //判断IOS
-                Bridge.callhandler("setLoading", JSON.stringify(isloading), data => {});
+                window.webkit.messageHandlers.setLoading.postMessage(isloading);
             }
         }
         return response

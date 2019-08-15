@@ -64,7 +64,7 @@ export default {
     },
     validateNomal(info) {
       if (info === "") {
-        return this.$Message("姓名不能为空");
+        return this.$Message("必填");
       } else {
         this.message.errortype = false;
         this.message.continueType = true;

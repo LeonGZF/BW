@@ -168,12 +168,7 @@ export default {
         //判断是android
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
-        //判断IOS
-        this.$bridge.callhandler(
-          "setActionBar",
-          JSON.stringify(this.getActionBar()),
-          data => {}
-        );
+         window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {
@@ -190,9 +185,10 @@ export default {
     }
   },
   mounted() {
+     window.getActionBar = this.getActionBar; //第三方回调
     if (browserVerify.verifyBW()) {
       this.setActionbar();
-      window.getActionBar = this.getActionBar; //第三方回调
+     
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback

@@ -80,9 +80,9 @@ export default {
       //邮箱格式
       var reg = /^([a-zA-Z]|[0-9])(\w|\-|\.)+@[a-zA-Z0-9|\-]+(\.([a-zA-Z0-9]{2,4}))+$/;
       if (mail == "") {
-        return this.$Message("帳號不能為空");
+        return this.$Message("必填");
       } else if (!reg.test(mail)) {
-        return this.$Message("邮箱格式错误，請重新輸入");
+        return this.$Message("email格式錯誤，請重新輸入。");
       } else if (mail == this.form.email) {
         return this.$Message(
           "請輸入 " + this.form.email + " 之外的email作為帳號"
@@ -94,16 +94,12 @@ export default {
             this.message.continueType = true;
             return true;
           } else if (res.data.errorCode == "401") {
-            return this.$Message("邮箱已经注册");
+            return this.$Message("此email已註冊，請直接登入。");
             this.message.continueType = false;
           }
         });
       }
     }
-  },
-  activated() {
-    let headimg = document.querySelector("#app .header img");
-    headimg.style.display = "none";
   },
   mounted(){
         console.log(this.$store.state.sso);

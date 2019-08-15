@@ -133,15 +133,10 @@ export default {
         if (browserVerify.verifyAndroid()) {
           SendMessageToApp("loginWithThirdParty", JSON.stringify(object));
         } else if (browserVerify.verifyIos()) {
-          this.$bridge.callhandler(
-            "loginWithThirdParty",
-            JSON.stringify(object),
-            data => {}
-          );
+          window.webkit.messageHandlers.loginWithThirdParty.postMessage(object);
         }
       } else {
         console.log("====浏览器环境下运行====");
-
         //
         // hello js 第三方登录
         // const hello = this.hello;
@@ -161,34 +156,33 @@ export default {
         // })
         //浏览器测试 - 模拟数据
 
-        let unionID = "dadwqddsafafawafdasdw";
-        var email = "huangjian@tomonline-inc.com";
-        var providerKey = "1111111111322sdfdsfds";
-        var userName = "黄健";
-        console.log("111");
-        this.sendUserInformation(unionID, userName, email, loginMethod);
+        // let unionID = "dadwqddsafafawafdasdw";
+        // var email = "huangjian@tomonline-inc.com";
+        // var providerKey = "1111111111322sdfdsfds";
+        // var userName = "黄健";
+        // console.log("111");
+        // this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     sendUserInformation(id, userName, email, loginType) {
-      // alert(
-      //   "id:" +
-      //     id +
-      //     ",userName:" +
-      //     userName +
-      //     ", email:" +
-      //     email +
-      //     ",loginType:" +
-      //     loginType
-      // );
+      alert(
+        "id:" +
+          id +
+          ",userName:" +
+          userName +
+          ", email:" +
+          email +
+          ",loginType:" +
+          loginType
+      );
       this.form.type = loginType;
       let unionID = id;
       console.log(id);
       console.log(unionID);
-
       var email = email;
       var providerKey = userName;
       SocialLogin(unionID, loginType, providerKey, email).then(res => {
-        console.log("socialLogin", res.data);
+        alert("socialLogin"+ JSON.stringify(res.data));
 
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
@@ -196,7 +190,9 @@ export default {
           let Email = res.data.jDate.Email;
           this.$store.commit("LOGIN", token);
           this.$store.commit("EMAIL", Email);
+          alert("go to profile page start");
           this.$router.push("/");
+          alert("go to profile page end");
         } else if (res.data.errorCode == "403") {
           this.$Message("第三方帳號未驗證");
           this.$store.commit("ssoUnionId", unionID);
@@ -204,7 +200,6 @@ export default {
           this.$store.commit("ssoLoginType", loginType);
           this.$store.commit("ssoProviderKey", providerKey);
           this.$store.commit("ssoUserName", userName);
-
           this.$store.commit("rEmail", email);
           this.$store.commit("rUserName", userName);
 
@@ -227,7 +222,7 @@ export default {
             // this.sso.loginType = loginType;
             // this.sso.providerKey = providerKey;
             // this.form.userName = userName;
-            console.log(
+            alert(
               "unionId:" +
                 unionID +
                 "email:" +
@@ -405,12 +400,17 @@ export default {
         document.querySelector("#header").style.opacity = 1;
         document.querySelector(".login_img_content").style.opacity = 0.5;
       }
+    },
+    sendUserInformationIos(dic){
+      alert("kylie  辛苦 ");
+      alert("kylie  params :"+dic);
     }
   },
-  created: function() {
+  created() {
     if (browserVerify.verifyBW()) {
-      window.sendUserInformation = this.sendUserInformation; //第三方回调
-      window.getActionBar = this.getActionBar; //第三方回调
+      //第三方回调
+      //第三方回调
+     
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback
@@ -419,12 +419,22 @@ export default {
       });
       this.setActionbar();
     }
+    window.sendUserInformationIos = this.sendUserInformationIos;
   },
   mounted() {
+    let BW =this;
+    // window['sendUserInformationIos'] =function(data){
+    //   alert("hi ");
+    //   BW.sendUserInformationIos(data);
+    // }
+    window.sendUserInformation = this.sendUserInformation;
+    window.getActionBar = this.getActionBar; //第三方回调
     window.addEventListener("scroll", this.handleScroll);
     this.$bridge.registerhandler(
       "sendUserInformation",
       (data, responseCallback) => {
+        
+        alert("kylie  辛苦 ");
         var id = data["id"];
         var userName = data["userName"];
         var email = data["email"];

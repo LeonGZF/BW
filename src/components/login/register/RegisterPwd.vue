@@ -54,7 +54,8 @@ export default {
       },
       form: {
         pwdType: "",
-        password: ""
+        password: "",
+        eyeImg: require("../../../assets/img/eye.png"),
       }
     };
   },
@@ -75,6 +76,11 @@ export default {
     },
     changeType: function() {
       this.form.pwdType = !this.form.pwdType; //跟着小眼睛变化，密碼框隐藏显示文本框，内容就显示了
+      if (this.form.pwdType) {
+        this.form.eyeImg = require("../../../assets/img/openeye.png");
+      } else {
+        this.form.eyeImg = require("../../../assets/img/eye.png");
+      }
     },
     validatePass(pass) {
       //密碼格式
@@ -83,9 +89,9 @@ export default {
         this.message.continueType = false;
         return;
       } else if (pass.length < 6 || pass.length > 16) {
-        return this.$Message("請輸入6~16個字元");
+        return this.$Message("密碼格式錯誤，請重新設定。");
       } else if (!reg.test(pass)) {
-        return this.$Message("密碼格式错误，請重新輸入");
+        return this.$Message("密碼格式錯誤，請重新設定。");
       } else {
         this.message.errortype = false;
         this.message.continueType = true;

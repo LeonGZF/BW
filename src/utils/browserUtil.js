@@ -27,6 +27,7 @@ export const browserVerify = {
     }
   },
   verifyBW: function () {
+    // return true;
     var u = navigator.userAgent;
     var isBW = u.indexOf('Name/BW') > -1//BW
     if (isBW) {

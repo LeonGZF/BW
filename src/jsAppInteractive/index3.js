@@ -36,7 +36,7 @@ export default function SendMessageToApp() {
     if (typeof params != "string") {
       params = JSON.stringify(params)
     }
-    sendToAndroid(messageName, params)
+    return sendToAndroid(messageName, params)
   }
 }
 
@@ -67,6 +67,9 @@ function sendToAndroid(messageName, params) {
       break;
     case 'setLoginStatus': //设置 告诉app 是否登录
       BW.setLoginStatus(params);
+      break;
+    case 'getAPPVersion': //获取版本号
+      return BW.getAPPVersion();
       break;
   }
 

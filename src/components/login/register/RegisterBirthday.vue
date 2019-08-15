@@ -67,6 +67,24 @@ export default {
       this.form.birthday = "";
       this.continueBtn();
     }
+  },
+  mounted() {
+    let date_now = new Date();
+    let year = date_now.getFullYear();
+    let month =
+      date_now.getMonth() + 1 < 10
+        ? "0" + (date_now.getMonth() + 1)
+        : date_now.getMonth() + 1;
+    let date =
+      date_now.getDate() < 10 ? "0" + date_now.getDate() : date_now.getDate();
+    //设置input标签的max属性
+    let Birthday = document.querySelector('input[type="date"]');
+    Birthday.setAttribute("max", year + "-" + month + "-" + date);
+  },
+  activated() {
+    if (this.$store.state.form.birthday == "") {
+      this.message.continueType = false;
+    }
   }
 };
 </script>

@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/Member/**': {
-        target: 'http://172.25.18.83:8084/',
+        target: 'http://172.24.214.122:8084/',
         changeOrigin: true, //改变源
       //  secure: false,      // 如果是https接口，需要配置这个参数
         pathRewrite: {
@@ -20,7 +20,7 @@ module.exports = {
         }
       },
       '/api/userCenter/**': {
-        target: 'http://172.25.18.83:8082/',
+        target: 'http://172.24.214.122:8082/',
         changeOrigin: true, //改变源
       //  secure: false,      // 如果是https接口，需要配置这个参数
         pathRewrite: {
@@ -30,7 +30,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: '172.24.182.76', // can be overwritten by process.env.HOST
+    host: '172.24.214.130', // can be overwritten by process.env.HOST
     port: 80, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

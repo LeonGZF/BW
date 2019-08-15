@@ -106,7 +106,7 @@ export default {
   methods: {
     validateMaill(mail) {
       //邮箱格式
-      var reg = /^([a-zA-Z]|[0-9])(\w|\-|\.)+@[a-zA-Z0-9|\-]+\.([a-zA-Z]{2,4})$/;
+      var reg = /^([a-zA-Z]|[0-9])(\w|\-|\.)+@[a-zA-Z0-9|\-]+(\.([a-zA-Z0-9]{1,4}))+$/;
       if (mail == "") {
         return this.$Message("帳號不能為空");
       } else if (!reg.test(mail)) {
@@ -114,6 +114,7 @@ export default {
       } else {
         checkMail(mail).then(res => {
           if (res.data.errorCode == "200") {
+            alert("email未註冊")
             return this.$Message("email未註冊");
           } else if (res.data.errorCode == "401") {
             this.message.errortype = false;
@@ -243,7 +244,7 @@ export default {
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
         //判断IOS
-        this.$bridge.callhandler("setActionBar", JSON.stringify(this.getActionBar()), data => {});
+         window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {
@@ -262,13 +263,14 @@ export default {
   mounted() {
     if (browserVerify.verifyBW()) {
       this.setActionbar();
-      window.getActionBar = this.getActionBar; //第三方回调
+      
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback
       ) {
         responseCallback(this.getActionBar());
       });
+      window.getActionBar = this.getActionBar; //第三方回调
     }
   },
   created() {

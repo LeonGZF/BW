@@ -110,7 +110,7 @@ export default {
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
         //判断IOS
-        this.$bridge.callhandler("setActionBar", JSON.stringify(this.getActionBar()), data => {});
+         window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {

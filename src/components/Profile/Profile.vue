@@ -83,11 +83,15 @@
         <cell-item-label arrow v-if="false">
           <span slot="left">給商周Plus評分</span>
         </cell-item-label>
-        <cell-item-label arrow v-if="false">>
+        <cell-item-label arrow v-if="false">
           <span slot="left">聯絡我們</span>
         </cell-item-label>
-        <cell-item-label arrow v-if="false">>
+        <cell-item-label arrow v-if="false">
           <span slot="left">常見問題</span>
+        </cell-item-label>
+        <cell-item-label v-if="isApp" >
+          <span slot="left">目前版本</span>
+          <span slot="right">{{versionNum}}</span>
         </cell-item-label>
       </cell-group>
     </div>
@@ -119,7 +123,9 @@ export default {
       thirdPart: [],
       register: "",
       joinDate: "",
-      MemberPoint:0
+      MemberPoint:0,
+      versionNum:"",
+      isApp:false
 
     };
   },
@@ -152,7 +158,7 @@ export default {
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
         //判断IOS
-        this.$bridge.callhandler("setActionBar", JSON.stringify(this.getActionBar()), data => {});
+        window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {
@@ -167,8 +173,25 @@ export default {
       data.leftButton = leftButtonArry;
       return data;
     },
+    getAppVersion(){
+       if (browserVerify.verifyBW()) {
+          let BW =this;
+           if (browserVerify.verifyAndroid()) {
+            //判断是android
+             this.versionNum = SendMessageToApp("getAPPVersion");
+          } else if (browserVerify.verifyIos()) {
+            //判断IOS
+             window.webkit.messageHandlers.getAPPVersion.postMessage("");
+          }
+      }else{
+        alert("2222222");
+        
+      }
+    },
+    setAppVersion(versionNum){
+      this.versionNum =versionNum;
+    },
     updateData(){ //数据更新
-
       getThirdMessage().then(reg => {
         console.log("第三方登录======>",reg.data);
         
@@ -195,34 +218,16 @@ export default {
   },
   created(){
     if (browserVerify.verifyBW()) {
-      console.log("111111111111111111");
+      this.getAppVersion();
+      this.isApp=true;
       this.setActionbar();
+    }
       window.getActionBar = this.getActionBar; //第三方回调
       window.updateData = this.updateData;
-      this.$bridge.registerhandler("getActionBar", function(
-        data,
-        responseCallback
-      ) {
-        responseCallback(this.getActionBar());
-      });
-      this.$bridge.registerhandler("updateData", function(
-        data,
-        responseCallback
-      ) {
-        responseCallback(this.updateData());
-      });
-    }
+      window.setAppVersion=this.setAppVersion;
   },
   mounted() {
     this.updateData();
-    if (browserVerify.verifyBW()) {
-      this.$bridge.registerhandler("updateData", function(
-        data,
-        responseCallback
-      ) {
-        responseCallback(this.updateData());
-      });
-    }
   }
 };
 </script>

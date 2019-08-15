@@ -45,16 +45,8 @@ const mutations = {
     console.log(JSON.stringify(object));
     if (browserVerify.verifyBW()) { // BW APP
       if (browserVerify.verifyIos()) { // IOS
-        Bridge.callhandler(
-          "saveToken",
-          JSON.stringify(object),
-          data => { }
-        ); //TODO   定义原生方法 及参数 
-        Bridge.callhandler(
-          "setLoginStatus",
-          JSON.stringify(status),
-          data => { }
-        ); //TODO   定义原生方法 及参数 
+         window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
+         window.webkit.messageHandlers.setLoginStatus.postMessage(status); //TODO   定义原生方法 及参数 
       } else if (browserVerify.verifyAndroid()) { //android
         SendMessageToApp("saveToken", JSON.stringify(object)); //TODO  定义原生方法 及参数
         SendMessageToApp("setLoginStatus", JSON.stringify(status)); //TODO  定义原生方法 及参数
@@ -82,7 +74,7 @@ const mutations = {
       }
       if (browserVerify.verifyIos()) {
         //判断IOS
-        Bridge.callhandler("setLoginStatus", JSON.stringify(status), data => { });
+         window.webkit.messageHandlers.setLoginStatus.postMessage(status);
       }
     }
   },

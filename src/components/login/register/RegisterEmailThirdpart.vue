@@ -81,8 +81,9 @@ export default {
     },
   },
   created() {
+     window.getActionBar = this.getActionbar; //第三方回调
     if (browserVerify.verifyBW()) {
-      window.getActionBar = this.getActionbar; //第三方回调
+     
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback

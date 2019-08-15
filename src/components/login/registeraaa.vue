@@ -20,8 +20,9 @@ export default {
 
   },
     created() {
-    if (browserVerify.verifyBW()) {
       window.getActionBar = this.getActionbar; //第三方回调
+    if (browserVerify.verifyBW()) {
+      
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback

@@ -16,6 +16,7 @@
             type="number"
             v-model="form.phone"
             @input="validatePhone(form.phone)"
+            placeholder="987654321"
           />
         </div>
       </div>
@@ -72,9 +73,9 @@ export default {
       //手机格式
       var reg = /^[9]\d{8}$/;
       if (pass == "") {
-        return this.$Message("手機号不能为空");
+        return this.$Message("必填");
       } else if (!reg.test(pass)) {
-        return this.$Message("手機号格式错误，請重新輸入");
+        return this.$Message("此電話號碼無效，請重新輸入。");
       } else {
         this.message.errortype = false;
         this.message.continueType = true;

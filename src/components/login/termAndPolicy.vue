@@ -5,7 +5,7 @@
         <img src="../../assets/img/backBlackNormal@2x.png" class="back" @click="callBack()" />
       </div>
       <ul class="tab-tilte">
-        <li @click="cur=0" :class="{'active':cur==0}">關於商周APP</li>
+        <li @click="cur=0" :class="{'active':cur==0}">關於商周Plus</li>
         <li @click="cur=1" :class="{'active':cur==1}">隱私權聲明</li>
         <li @click="cur=2" :class="{'active':cur==2}">服務條款</li>
       </ul>
@@ -14,12 +14,6 @@
       <div v-show="cur==0">
         <p>作為台灣社會的重要資產，「商周集團」的企業使命是以媒體的影響力，推動華人社會躋身世界一流，不只是雜誌，《商周》的使命，更是致力建立一個多元載體資源平台，讓人們可以透過不同的媒體載具，方便自主地接收文字、影音、圖像、課程等多元豐富的優質內容。</p>
         <p>創立於1987年，華人世界的第一本財經週刊，台灣發行量No.1雜誌，亞太地區閱讀人口密度最高的財經雜誌，台灣閱讀《商業周刊》人口密度為0.56%，高於《財經》約佔中國人口0.01%、《Nikkei Business》佔日本人口0.1%；經中華民國發行公信會ABC(Audit Bureau of Circulations)稽核2015年每期平均有費發行量122,268本。榮獲10次國家金鼎獎最佳財經時事雜誌獎，居同業之冠，商周.com每月觸及人數(UU)達600萬。</p>
-        <br />
-        <p>訂閱說明</p>
-        <br />
-        <p>本服務訂閱為自動延展續訂，於訂閱到期日前24小時內，數位商店將為您自動續訂，直到您取消為止。</p>
-        <p>若要取消訂閱，需於到期日前24小時(含)內，透過您的數位商店帳戶內的「訂閱項目」關閉「自動更新」。</p>
-        <p>在有效的訂閱期間，是無法取消訂閱服務。</p>
         <br />
       </div>
       <div v-show="cur==1">
@@ -105,7 +99,7 @@ export default {
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
         //判断IOS
-        this.$bridge.callhandler("setActionBar", JSON.stringify(this.getActionBar()), data => {});
+         window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {
@@ -222,5 +216,6 @@ ul li {
   font-family: PingFangTC-Regular, sans-serif;
   word-wrap: break-word;
   white-space: pre-wrap;
+  word-break: break-all;
 }
 </style>

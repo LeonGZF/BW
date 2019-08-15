@@ -66,7 +66,8 @@ export default {
       form: {
         acount: "",
         pwdType: "",
-        password: ""
+        password: "",
+        eyeImg: require("../../../assets/img/eye.png"),
       },
       sso: {
         email: ""
@@ -116,6 +117,12 @@ export default {
     },
     changeType: function() {
       this.form.pwdType = !this.form.pwdType; //跟着小眼睛变化，密碼框隐藏显示文本框，内容就显示了
+        this.form.pwdType = !this.form.pwdType; //跟着小眼睛变化，密碼框隐藏显示文本框，内容就显示了
+        if (this.form.pwdType) {
+          this.form.eyeImg = require("../../../assets/img/openeye.png");
+        } else {
+          this.form.eyeImg = require("../../../assets/img/eye.png");
+        }
     },
     validatePassNull(pass) {
       // if (pass == "") {

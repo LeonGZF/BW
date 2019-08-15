@@ -123,11 +123,7 @@ export default {
         if (browserVerify.verifyAndroid()) {
           SendMessageToApp("loginWithThirdParty", JSON.stringify(object));
         } else if (browserVerify.verifyIos()) {
-          this.$bridge.callhandler(
-            "loginWithThirdParty",
-            JSON.stringify(object),
-            data => {}
-          );
+          window.webkit.messageHandlers.loginWithThirdParty.postMessage(object);
         }
       } else {
         //
