@@ -23,7 +23,7 @@
       <cell-group title="會員資訊">
         <cell-item-label @click.native="gologin">
           <span slot="left">帳號</span>
-          <span slot="right" class="user_mail">{{ loginEmail == '' ? '未登錄': loginEmail}}</span>
+          <span slot="right" class="user_mail">{{ loginEmail == '' ? '登入/註冊': loginEmail}}</span>
         </cell-item-label>
         <template v-if="isLogin">
           <cell-item-label>
@@ -184,7 +184,7 @@ export default {
              window.webkit.messageHandlers.getAPPVersion.postMessage("");
           }
       }else{
-        alert("2222222");
+        // alert("2222222");
         
       }
     },
@@ -203,7 +203,7 @@ export default {
           this.MemberPoint= reg.data.jDate.point;
         } else {
           this.isLogin = false;
-          this.loginEmail = "未登錄";
+          this.loginEmail = "登入/註冊";
           this.$store.commit("LOGOUT");
         }
       });

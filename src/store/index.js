@@ -27,7 +27,10 @@ const state = {
     providerKey: "",
     email: "",
     userName:""
-  }
+  },
+  native:{
+    gotoLogin:false,
+  },
 };
 const mutations = {
   LOGIN: (state, data) => {
@@ -108,6 +111,9 @@ const mutations = {
       birthday: "",
       phone: ""
     }
+  },
+  setNative:(state,data) =>{
+    state.native.gotoLogin = data
   },
   
 

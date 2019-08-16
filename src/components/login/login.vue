@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <div id="header" :class="fixdtop"></div>
+    <img v-if="isClosePage" id="colse_img" @click="closePage()"  src="../../assets/img/closeNormal@2x.png" />
     <div class="login_img_content">
       <img class="login_img" src="../../assets/img/logo.png" />
     </div>
@@ -87,7 +88,8 @@ export default {
         errortype: false,
         errorStr: ""
       },
-      fixdtop: ""
+      fixdtop: "",
+      isClosePage:false,
     };
   },
   methods: {
@@ -165,16 +167,16 @@ export default {
       }
     },
     sendUserInformation(id, userName, email, loginType) {
-      alert(
-        "id:" +
-          id +
-          ",userName:" +
-          userName +
-          ", email:" +
-          email +
-          ",loginType:" +
-          loginType
-      );
+      // alert(
+      //   "id:" +
+      //     id +
+      //     ",userName:" +
+      //     userName +
+      //     ", email:" +
+      //     email +
+      //     ",loginType:" +
+      //     loginType
+      // );
       this.form.type = loginType;
       let unionID = id;
       console.log(id);
@@ -182,7 +184,7 @@ export default {
       var email = email;
       var providerKey = userName;
       SocialLogin(unionID, loginType, providerKey, email).then(res => {
-        alert("socialLogin"+ JSON.stringify(res.data));
+        // alert("socialLogin"+ JSON.stringify(res.data));
 
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
@@ -190,9 +192,7 @@ export default {
           let Email = res.data.jDate.Email;
           this.$store.commit("LOGIN", token);
           this.$store.commit("EMAIL", Email);
-          alert("go to profile page start");
           this.$router.push("/");
-          alert("go to profile page end");
         } else if (res.data.errorCode == "403") {
           this.$Message("第三方帳號未驗證");
           this.$store.commit("ssoUnionId", unionID);
@@ -401,16 +401,22 @@ export default {
         document.querySelector(".login_img_content").style.opacity = 0.5;
       }
     },
-    sendUserInformationIos(dic){
-      alert("kylie  辛苦 ");
-      alert("kylie  params :"+dic);
+    closePage(){
+      if (browserVerify.verifyBW()) {
+        if (browserVerify.verifyAndroid()) {
+          //判断是android
+          SendMessageToApp("goToIndex", "1");
+        } else if (browserVerify.verifyIos()) {
+          //判断IOS
+          window.webkit.messageHandlers.goToIndex.postMessage("1");
+        }
+      }
     }
   },
   created() {
+    var gotoLogin = false;
     if (browserVerify.verifyBW()) {
-      //第三方回调
-      //第三方回调
-     
+      //第三方回调     
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback
@@ -418,23 +424,23 @@ export default {
         responseCallback(this.getActionBar());
       });
       this.setActionbar();
+      var origin = this.$route.query.origin;
+      if(origin == "navi"){
+          gotoLogin=true;
+      }
     }
-    window.sendUserInformationIos = this.sendUserInformationIos;
+    
+    this.$store.commit("setNative", gotoLogin);
+    this.isClosePage = this.$store.state.native.gotoLogin;
   },
   mounted() {
     let BW =this;
-    // window['sendUserInformationIos'] =function(data){
-    //   alert("hi ");
-    //   BW.sendUserInformationIos(data);
-    // }
     window.sendUserInformation = this.sendUserInformation;
     window.getActionBar = this.getActionBar; //第三方回调
     window.addEventListener("scroll", this.handleScroll);
     this.$bridge.registerhandler(
       "sendUserInformation",
       (data, responseCallback) => {
-        
-        alert("kylie  辛苦 ");
         var id = data["id"];
         var userName = data["userName"];
         var email = data["email"];
@@ -482,6 +488,13 @@ export default {
   overflow: hidden;
   margin: 0 auto;
   text-align: center;
+}
+#colse_img{
+  width: 88px;
+  height: 88px;
+  position: absolute;
+  right: 16px;
+  top: 0px;
 }
 .login_fb {
   font-family: PingFangHK-Semibold, sans-serif;
