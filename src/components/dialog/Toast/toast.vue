@@ -57,7 +57,7 @@ export default {
 .yd-toast-success-icon {
   width: 112px;
   height: 112px;
-  background: url("../../../assets/img/success.png") no-repeat center;
+  background: url("../../../assets/img/success@2x.png") no-repeat center;
   margin: 62px auto;
 }
 
