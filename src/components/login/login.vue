@@ -158,12 +158,12 @@ export default {
         // })
         //浏览器测试 - 模拟数据
 
-        // let unionID = "dadwqddsafafawafdasdw";
-        // var email = "huangjian@tomonline-inc.com";
-        // var providerKey = "1111111111322sdfdsfds";
-        // var userName = "黄健";
-        // console.log("111");
-        // this.sendUserInformation(unionID, userName, email, loginMethod);
+        let unionID = "dadwqddsafafawafdasdw";
+        var email = "guozhifu580230@gmail.com";
+        var providerKey = "1111111111322sdfdsfds";
+        var userName = "黄健";
+        console.log("111");
+        this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     sendUserInformation(id, userName, email, loginType) {
@@ -222,16 +222,16 @@ export default {
             // this.sso.loginType = loginType;
             // this.sso.providerKey = providerKey;
             // this.form.userName = userName;
-            alert(
-              "unionId:" +
-                unionID +
-                "email:" +
-                email +
-                "loginType:" +
-                loginType +
-                "providerKey" +
-                providerKey
-            );
+            // alert(
+            //   "unionId:" +
+            //     unionID +
+            //     "email:" +
+            //     email +
+            //     "loginType:" +
+            //     loginType +
+            //     "providerKey" +
+            //     providerKey
+            // );
 
             this.$store.commit("ssoUnionId", unionID);
             this.$store.commit("ssoEmail", email);

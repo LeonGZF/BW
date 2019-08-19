@@ -110,7 +110,7 @@ export default {
       if (mail == "") {
         return this.$Message("帳號不能為空");
       } else if (!reg.test(mail)) {
-        return this.$Message("邮箱格式错误，請重新輸入");
+        return this.$Message("帳號(email)輸入錯誤，請重新輸入");
       } else {
         checkMail(mail).then(res => {
           if (res.data.errorCode == "200") {

@@ -111,7 +111,7 @@ export default {
         } else if (res.data.errorCode == "204") {
           this.$Message("帳號未驗證");
         } else {
-          this.$Message("驗證碼輸入錯誤，請重新輸入");
+          this.$Message("密碼輸入錯誤，請重新輸入");
         }
       });
     },

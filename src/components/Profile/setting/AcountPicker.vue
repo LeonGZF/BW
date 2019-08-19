@@ -15,6 +15,7 @@
         <div slot="right" @click="vall">
           <div v-if="v0" style="opacity: 0.5;letter-spacing:0;">未填寫</div>
           <select name="sex" id v-model="sex" v-else>
+            <option value="">暫不提供</option>
             <option value="1">男</option>
             <option value="2">女</option>
           </select>
@@ -201,7 +202,11 @@ export default {
       if (reg.data.errorCode == 200) {
         this.isLogin = true;
         this.mobile = reg.data.jDate.mobile;
+        
         try {
+          if(reg.data.jDate.birthday >10){
+            this.v1 = true; 
+          }
           this.date = Mytools.setYYY_MM_ddDate(reg.data.jDate.birthday);
           this.v1 = false;
         } catch (error) {
