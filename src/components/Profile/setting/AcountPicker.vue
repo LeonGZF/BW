@@ -185,6 +185,18 @@ export default {
       return data;
     }
   },
+  updated(){
+     if(this.sex == 1 || this.sex==2){
+        this.v0 = false;
+      }else{
+        this.v0 = true;
+      }
+       this.$dialog.toast({
+            mes: "儲存成功",
+            icon: "success",
+            timeout: 15000000
+          });
+  },
   mounted() {
      window.getActionBar = this.getActionBar; //第三方回调
     if (browserVerify.verifyBW()) {
