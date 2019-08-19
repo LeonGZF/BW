@@ -51,6 +51,7 @@ export default {
   height: 112px;
   /* background: url("../../assets/img/success@2x.png") no-repeat center; */
   padding: 62px 120px;
+  background-size: 1.493333rem;
 }
 
 /* 正确错误 */
@@ -59,6 +60,7 @@ export default {
   height: 112px;
   background: url("../../../assets/img/success@2x.png") no-repeat center;
   margin: 62px auto;
+  background-size: 1.493333rem;
 }
 
 /* .yd-toast-error-icon {
