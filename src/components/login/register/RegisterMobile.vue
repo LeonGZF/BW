@@ -13,10 +13,11 @@
           <span class="areaCode">+886</span>
           <input
             class="phone"
-            type="number"
+            type="text"
             v-model="form.phone"
             @input="validatePhone(form.phone)"
             placeholder="987654321"
+            pattern="[0-9]*"
           />
         </div>
       </div>

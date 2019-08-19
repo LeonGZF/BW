@@ -35,7 +35,7 @@
       </cell-item-label>
       <cell-item-label style="border:none;">
         <span slot="left">手機</span>
-        <input slot="right" type="text" v-model="mobile" @blur="checkMobile" placeholder="未填寫" />
+        <input slot="right" type="text" pattern="[0-9]*" v-model="mobile" @blur="checkMobile" placeholder="未填寫" />
       </cell-item-label>
       <div class="errorinfo_div" v-if="message.errortype">
         <span class="errorinfo">{{message.errorStr}}</span>
