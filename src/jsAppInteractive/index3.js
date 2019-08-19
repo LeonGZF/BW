@@ -71,6 +71,9 @@ function sendToAndroid(messageName, params) {
     case 'getAPPVersion': //获取版本号
       return BW.getAPPVersion();
       break;
+    case 'goToIndex': //页面跳转
+      return BW.goToIndex(params);
+      break;
   }
 
 }

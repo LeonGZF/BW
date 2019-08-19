@@ -158,12 +158,12 @@ export default {
         // })
         //浏览器测试 - 模拟数据
 
-        let unionID = "dadwqddsafafawafdasdw";
-        var email = "guozhifu580230@gmail.com";
-        var providerKey = "1111111111322sdfdsfds";
-        var userName = "黄健";
-        console.log("111");
-        this.sendUserInformation(unionID, userName, email, loginMethod);
+        // let unionID = "dadwqddsafafawafdasdw";
+        // var email = "guozhifu580230@gmail.com";
+        // var providerKey = "1111111111322sdfdsfds";
+        // var userName = "黄健";
+        // console.log("111");
+        // this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     sendUserInformation(id, userName, email, loginType) {
@@ -192,7 +192,11 @@ export default {
           let Email = res.data.jDate.Email;
           this.$store.commit("LOGIN", token);
           this.$store.commit("EMAIL", Email);
-          this.$router.push("/");
+          if(this.$store.state.native.gotoLogin){
+              this.closePage();
+          }else{
+            this.$router.push("/");
+          }
         } else if (res.data.errorCode == "403") {
           this.$Message("第三方帳號未驗證");
           this.$store.commit("ssoUnionId", unionID);
@@ -267,6 +271,17 @@ export default {
                 });
               }
             });
+          }else{
+            this.$router.push({
+              name: "register",
+              params: {
+                loginType: this.form.type,
+                email: email,
+                unionID: unionID,
+                providerKey: providerKey,
+                userName: userName
+              }
+            });
           }
           //目前只有两种情况
           // else {
@@ -276,16 +291,7 @@ export default {
           //     name: "register"
           //   });
           // }
-          this.$router.push({
-            name: "register",
-            params: {
-              loginType: this.form.type,
-              email: email,
-              unionID: unionID,
-              providerKey: providerKey,
-              userName: userName
-            }
-          });
+          
         }
       });
     },
@@ -308,7 +314,12 @@ export default {
             this.$store.commit("EMAIL", Email);
             // console.log(this.$route.query.redirect);
             // const redirect =this.$route.query.redirect;
-            this.$router.push("/");
+            if(this.$store.state.native.gotoLogin){
+                  this.closePage();
+            }else{
+              this.$router.push("/");
+            }
+            
           } else if (res.data.errorCode == "204") {
             this.$Message("帳號未驗證");
 
@@ -403,12 +414,16 @@ export default {
     },
     closePage(){
       if (browserVerify.verifyBW()) {
+        let data = new Object()
+        data.url="";
+        data.index=0;
+        data.action=0;
         if (browserVerify.verifyAndroid()) {
           //判断是android
-          SendMessageToApp("goToIndex", "1");
+          SendMessageToApp("goToIndex", JSON.stringify(data));
         } else if (browserVerify.verifyIos()) {
           //判断IOS
-          window.webkit.messageHandlers.goToIndex.postMessage("1");
+          window.webkit.messageHandlers.goToIndex.postMessage(data);
         }
       }
     }
@@ -495,6 +510,7 @@ export default {
   position: absolute;
   right: 16px;
   top: 0px;
+  z-index: 1110;
 }
 .login_fb {
   font-family: PingFangHK-Semibold, sans-serif;

@@ -14,8 +14,7 @@ import { browserVerify } from "@/utils/browserUtil";
 export default {
   methods: {
     callBack() {
-      history.go(-1)
-
+      history.go(-1);
     },
     setActionbar() {
       if (browserVerify.verifyAndroid()) {

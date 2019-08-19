@@ -46,7 +46,7 @@ const mutations = {
     var status = new Object();
     status.login = true;
     console.log(JSON.stringify(object));
-    if (browserVerify.verifyBW()) { // BW APP
+    if (browserVerify.verifyBW() ) { // BW APP
       if (browserVerify.verifyIos()) { // IOS
          window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
          window.webkit.messageHandlers.setLoginStatus.postMessage(status); //TODO   定义原生方法 及参数 
