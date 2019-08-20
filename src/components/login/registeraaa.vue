@@ -31,7 +31,7 @@ export default {
       var leftButtonArry = new Array();
       data.title = "";
       data.type = 4;
-      data.backgroundColor = "#CD0505";
+      data.backgroundColor = "#FFFfFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
       data.leftButton = leftButtonArry;

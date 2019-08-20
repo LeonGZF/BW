@@ -123,10 +123,10 @@ export default {
       let reg = /^[9]\d{8}$/;
       if (this.mobile == "") {
         this.message.errortype = true;
-        this.message.errorStr = "手機号不能為空";
+        this.message.errorStr = "手機號碼不能為空";
       } else if (!reg.test(this.mobile)) {
         this.message.errortype = true;
-        this.message.errorStr = "手機号格式错误，請重新輸入";
+        this.message.errorStr = "手機號碼格式錯誤，請重新輸入";
       } else {
         this.message.errortype = false;
         // this.message.continueType = true;
@@ -178,7 +178,7 @@ export default {
       var leftButtonArry = new Array();
       data.title = "";
       data.type = 4;
-      data.backgroundColor = "#CD0505";
+      data.backgroundColor = "#FFFFFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
       data.leftButton = leftButtonArry;

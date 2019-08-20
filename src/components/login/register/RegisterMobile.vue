@@ -15,7 +15,7 @@
             class="phone"
             type="text"
             v-model="form.phone"
-            @input="validatePhone(form.phone)"
+            @blur="validatePhone(form.phone)"
             placeholder="987654321"
             pattern="[0-9]*"
           />
@@ -72,7 +72,7 @@ export default {
     },
     validatePhone(pass) {
       //手机格式
-      var reg = /^[9]\d{8}$/;
+      var reg = /^0?[9]\d{8}$/;
       if (pass == "") {
         return this.$Message("必填");
       } else if (!reg.test(pass)) {

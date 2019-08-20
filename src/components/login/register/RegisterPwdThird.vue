@@ -19,14 +19,14 @@
               placeholder="請輸入密碼"
               v-if="form.pwdType"
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <input
               type="password"
               placeholder="請輸入密碼"
               v-else
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <span class="pas_eye">
               <img src="../../../assets/img/eye.png" @click="changeType()" />

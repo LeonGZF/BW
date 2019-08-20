@@ -23,7 +23,7 @@
             type="text"
             placeholder="example@mail.com"
             v-model="form.acount"
-            @input="validateMaill(form.acount)"
+            @blur="validateMaill(form.acount)"
           />
         </div>
         <div class="input_item" v-else-if="input.type == '1' || input.type == '12' ">
@@ -32,14 +32,14 @@
             placeholder="請輸入密碼"
             v-if="form.pwdType"
             v-model="form.password"
-            @input="validatePass(form.password)"
+            @blur="validatePass(form.password)"
           />
           <input
             type="password"
             placeholder="請輸入密碼"
             v-else
             v-model="form.password"
-            @input="validatePass(form.password)"
+            @blur="validatePass(form.password)"
           />
           <span class="pas_eye">
             <img src="../../assets/img/eye.png" @click="changeType()" />
@@ -60,11 +60,11 @@
             type="text"
             placeholder="請輸入姓名"
             v-model="form.userName"
-            @input="validateNomal(form.userName,'姓名')"
+            @blur="validateNomal(form.userName,'姓名')"
           />
         </div>
         <div class="input_item" v-else-if="input.type == '4' || input.type == '15' ">
-          <input type="date" v-model="form.birthday" @input="validateNomal(form.birthday,'生日')"/>
+          <input type="date" v-model="form.birthday" @blur="validateNomal(form.birthday,'生日')"/>
         </div>
         <div class="input_item" v-else-if="input.type == '5' || input.type == '16' ">
           <span class="areaCode">+886</span>
@@ -72,7 +72,7 @@
             class="phone"
             type="number"
             v-model="form.phone"
-            @input="validatePhone(form.phone)"
+            @blur="validatePhone(form.phone)"
           />
         </div>
         <div class="input_item" v-else-if="input.type == '6' || input.type == '17' "></div>
@@ -86,14 +86,14 @@
               placeholder="請輸入密碼"
               v-if="form.pwdType"
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <input
               type="password"
               placeholder="請輸入密碼"
               v-else
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <span class="pas_eye">
               <img src="../../assets/img/eye.png" @click="changeType()" />
