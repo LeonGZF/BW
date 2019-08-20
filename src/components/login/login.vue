@@ -302,7 +302,7 @@ export default {
       if (password == "") {
         return this.$Message("密碼不能為空");
       }
-      if (this.validatePassword(password) && this.validateMaill(acount)) {
+      if ( this.validateMaill(acount) && this.validatePassword(password)) {
         loginReq(this.form.acount, this.form.password).then(res => {
           if (res.data.errorCode == "200") {
             this.message.errortype = false;
@@ -376,11 +376,7 @@ export default {
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
       } else if (browserVerify.verifyIos()) {
         //判断IOS
-        this.$bridge.callhandler(
-          "setActionBar",
-          JSON.stringify(this.getActionBar()),
-          data => {}
-        );
+        window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
     getActionBar() {

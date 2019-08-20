@@ -10,7 +10,7 @@
       </div>
       <div class="input_content">
         <div>
-          <div class="input_title">账号</div>
+          <div class="input_title">帳號</div>
           <div class="acount_info">{{sso.email}}</div>
           <div class="input_title">密碼</div>
           <div class="input_item">
