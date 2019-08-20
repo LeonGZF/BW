@@ -111,7 +111,7 @@ export default {
       data.backgroundColor = "#FFFFFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
-      data.leftButton = leftButtonArry;
+      data.leftButton = leftButtonArry;                             
       return data;
     }
   },

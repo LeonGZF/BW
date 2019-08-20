@@ -15,7 +15,7 @@
             type="text"
             placeholder="example@mail.com"
             v-model="form.acount"
-            @input="validateMaill(form.acount)"
+            @blur="validateMaill(form.acount)"
           />
         </div>
         <div class="errorinfo_div" v-if="message.errortype">

@@ -10,7 +10,7 @@
       </div>
       <div class="input_content">
         <div class="input_item">
-          <input type="date" v-model="form.birthday" @input="validateNomal(form.birthday,'生日')" />
+          <input type="date" v-model="form.birthday" @blur="validateNomal(form.birthday,'生日')" />
         </div>
         <div class="errorinfo_div" v-if="message.errortype">
           <span class="errorinfo">{{message.errorStr}}</span>

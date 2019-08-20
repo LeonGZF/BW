@@ -9,6 +9,7 @@
           @click="callBack()"
         />
       </div>
+      <img v-if="input.type == '2'"  id="colse_img" @click="closePage()"  src="../../assets/img/closeNormal@2x.png" />
     </div>
     <div class="content">
       <div class="title">{{input.title}}</div>
@@ -25,7 +26,7 @@
             type="text"
             placeholder="請輸入帳號(email)"
             v-model="form.acount"
-            @input="validateMaill(form.acount)"
+            @blur="validateMaill(form.acount)"
           />
         </div>
         <div class="pass_content" v-else-if="input.type == '2'">
@@ -34,7 +35,7 @@
               type="password"
               placeholder="請輸入密碼"
               v-model="form.password"
-              @input="validatePass(form.password)"
+              @blur="validatePass(form.password)"
             />
           </div>
           <div class="input_item pass2">
@@ -42,7 +43,7 @@
               type="password"
               placeholder="請再次輸入密碼"
               v-model="form.password2"
-              @input="validate2Pass(form.password2)"
+              @blur="validate2Pass(form.password2)"
             />
           </div>
         </div>
@@ -114,7 +115,6 @@ export default {
       } else {
         checkMail(mail).then(res => {
           if (res.data.errorCode == "200") {
-            alert("email未註冊")
             return this.$Message("email未註冊");
           } else if (res.data.errorCode == "401") {
             this.message.errortype = false;
@@ -123,6 +123,9 @@ export default {
           }
         });
       }
+    },
+    closePage(){
+          history.go(-1);
     },
     validatePass(pass) {
       //密碼格式
@@ -253,7 +256,7 @@ export default {
       var leftButtonArry = new Array();
       data.title = "";
       data.type = 4;
-      data.backgroundColor = "#CD0505";
+      data.backgroundColor = "#FFFFFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
       data.leftButton = leftButtonArry;
@@ -331,6 +334,14 @@ html,body{
   width: 88px;
   height: 88px;
   float: left;
+}
+#colse_img{
+  width: 88px;
+  height: 88px;
+  position: absolute;
+  right: 16px;
+  top: 0px;
+  z-index: 1110;
 }
 .content {
   width: 750px;

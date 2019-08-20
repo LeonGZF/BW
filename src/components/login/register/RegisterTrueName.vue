@@ -15,7 +15,7 @@
             class="username"
             placeholder="請輸入姓名"
             v-model="form.userName"
-            @input="validateNomal(form.userName)"
+            @blur="validateNomal(form.userName)"
           />
         </div>
         <div class="errorinfo_div" v-if="message.errortype">

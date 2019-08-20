@@ -10,7 +10,7 @@
       </div>
       <div class="input_content">
         <div>
-          <div class="input_title">账号</div>
+          <div class="input_title">帳號</div>
           <div class="acount_info">{{sso.email}}</div>
           <div class="input_title">密碼</div>
           <div class="input_item">
@@ -19,14 +19,14 @@
               placeholder="請輸入密碼"
               v-if="form.pwdType"
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <input
               type="password"
               placeholder="請輸入密碼"
               v-else
               v-model="form.password"
-              @input="validatePassNull(form.password)"
+              @blur="validatePassNull(form.password)"
             />
             <span class="pas_eye">
               <img src="../../../assets/img/eye.png" @click="changeType()" />

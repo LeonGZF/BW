@@ -17,7 +17,7 @@
       </div>
       <div>
         <span>再次輸入新密碼</span>
-        <input id="p3" v-model="newPwd1" @input="check" type="password" name placeholder="再次輸入新密碼" />
+        <input id="p3" v-model="newPwd1" @blur="check" type="password" name placeholder="再次輸入新密碼" />
       </div>
       <div class="errorinfo_div" v-if="message.errortype">
         <span class="errorinfo">{{message.errorStr}}</span>
@@ -119,7 +119,7 @@ export default {
       var leftButtonArry = new Array();
       data.title = "";
       data.type = 4;
-      data.backgroundColor = "#CD0505";
+      data.backgroundColor = "#FFFFFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
       data.leftButton = leftButtonArry;
