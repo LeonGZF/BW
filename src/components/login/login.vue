@@ -349,7 +349,7 @@ export default {
             // this.$Message("帳號未驗證");
             this.$Message("帳號未驗證");
           } else {
-            this.$Message("密碼輸入錯誤");
+            this.$Message("帳號或密碼輸入錯誤");
           }
         });
       }

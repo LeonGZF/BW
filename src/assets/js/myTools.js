@@ -8,7 +8,7 @@ setDate(time){
       oDay = oDate.getDate(),
       oHour = oDate.getHours(),
       oMin = oDate.getMinutes(),
-      oTime = oYear + '.' + getBz(oMonth) + '.' + getBz(oDay) + ' ' + getBz(oHour) + '.' + getBz(oMin)
+      oTime = oYear + '.' + getBz(oMonth) + '.' + getBz(oDay) + ' ' + getBz(oHour) + ':' + getBz(oMin)
     return oTime
     function getBz(num) {
       if (parseInt(num) < 10) {
