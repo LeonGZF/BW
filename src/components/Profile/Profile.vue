@@ -241,9 +241,9 @@ export default {
     background-position: center;
     background-size: 750px 240px;
     background-repeat: no-repeat;
-    height: 152px;
+    height: 240px;
     width: 750px;
-    padding-top: 88px;
+    /* padding-top: 88px; */
   }
   .conter {
     width: 690px;
@@ -254,6 +254,7 @@ export default {
     height: 88px;
     text-align: center;
     position: relative;
+    padding-top: 108px;
   }
   .heder_conten .title {
     font-size: 34px;
