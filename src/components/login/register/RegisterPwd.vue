@@ -25,7 +25,7 @@
             @blur="validatePass(form.password)"
           />
           <span class="pas_eye">
-            <img src="../../../assets/img/eye.png" @click="changeType()" />
+            <img :src="this.form.eyeImg" @click="changeType()" />
           </span>
         </div>
         <div class="errorinfo_div" v-if="message.errortype">
