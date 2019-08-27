@@ -308,8 +308,6 @@ export default {
             this.message.errortype = false;
             let token = res.data.jDate.Token;
             let Email = res.data.jDate.Email;
-            console.log(Email);
-
             this.$store.commit("LOGIN", token);
             this.$store.commit("EMAIL", Email);
             // console.log(this.$route.query.redirect);
