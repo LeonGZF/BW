@@ -209,5 +209,6 @@ export default {
   color: #cd0505;
   line-height: 40px;
   float: left;
+  margin-top: 0;
 }
 </style>

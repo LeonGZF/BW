@@ -667,8 +667,7 @@ span.errorinfo {
   font-size: 24px;
   color: #424242;
 }
-.singup_info,
-termAndPolicy_info {
+.singup_info,.termAndPolicy_info {
   color: #cd0505;
   cursor: pointer;
 }
