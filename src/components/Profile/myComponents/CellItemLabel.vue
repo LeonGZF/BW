@@ -63,7 +63,7 @@ export default {
   color: rgba(66, 66, 66, 0.6);
 }
 .yd-cell-arrow {
-  height: 88px;
+  height: 56px;
 }
 .yd-cell-arrow:after {
   content: "";
