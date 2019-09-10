@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-/* 第三步 */
+
 .progress .bar {
   width: 321px;
   height: 8px;

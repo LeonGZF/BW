@@ -915,7 +915,7 @@ span.errorinfo {
   position: relative !important;
   margin-top: 0px !important;
 }
-/* 去掉生日默认样式 */
+
 input[type="date"]{
   -webkit-appearance: none;
 }

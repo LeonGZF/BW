@@ -237,7 +237,7 @@ export default {
 </script>
 
 <style scoped>
-/* ----------------------------------------头部导航栏 */
+
 .tab {
   height: 88px;
   font-size: 34px;
@@ -264,15 +264,15 @@ export default {
   height: 88px;
   background: url("../../../assets/img/backBlackNormal.png") no-repeat center;
 }
-/* ---------------------------------下面输入框部分 */
+
 select {
   background: none;
   border: none;
   opacity: 0.6;
   text-align: right;
-  /* 文字右对齐 */
+  
   direction: rtl;
-  /* 下面这三行代码去除右侧小三角 */
+  
   -webkit-appearance: none;
   -webkit-tap-highlight-color: #fff;
   outline: 0;
@@ -290,7 +290,7 @@ input {
   -webkit-appearance: none;
 }
 option {
-  /* 文字右对齐 */
+  
   direction: rtl;
 }
 .errorinfo_div {

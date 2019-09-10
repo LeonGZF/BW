@@ -188,7 +188,7 @@ ul li {
   padding-bottom: 16px;
   background-color: #ffffff;
 }
-/* 点击对应的标题添加对应的背景颜色 */
+
 .tab-tilte .active {
   color: rgb(205, 5, 5);
   border-bottom: 4px solid rgb(205, 5, 5);
