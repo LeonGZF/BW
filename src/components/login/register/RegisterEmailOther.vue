@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -102,6 +102,7 @@ export default {
     }
   },
   created() {
+    window.setContinueBtn = this.setContinueBtn;
     window.getActionBar = this.getActionbar; //第三方回调
     if (browserVerify.verifyBW()) {
       

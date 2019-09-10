@@ -4,7 +4,7 @@
       <span class="bar"></span>
     </div>
     <div class="register_content">
-      <div class="title">請設定密碼</div>
+      <div class="title">請輸入密碼</div>
       <div class="info">
         <span>密碼包含英數、底線，長度介於6~16個字元</span>
       </div>
@@ -25,7 +25,7 @@
             @blur="validatePass(form.password)"
           />
           <span class="pas_eye">
-            <img src="../../../assets/img/eye.png" @click="changeType()" />
+            <img :src="this.form.eyeImg" @click="changeType()" />
           </span>
         </div>
         <div class="errorinfo_div" v-if="message.errortype">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -82,6 +82,10 @@ export default {
         this.form.eyeImg = require("../../../assets/img/eye.png");
       }
     },
+    setContinueBtn(bottom){
+     bottom = bottom + this.$refs.bottom.offsetHeight;
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     validatePass(pass) {
       //密碼格式
       var reg = /^[a-zA-Z0-9_]*$/;
@@ -103,6 +107,9 @@ export default {
     let headimg = document.querySelector("#app .header img");
     // console.log(headimg);
     headimg.style.display = "inline-block";
+  },
+  created(){
+      window.setContinueBtn = this.setContinueBtn;
   }
 };
 </script>

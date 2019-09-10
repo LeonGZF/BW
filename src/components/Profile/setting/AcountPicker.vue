@@ -302,5 +302,6 @@ span.errorinfo {
   color: #cd0505;
   line-height: 40px;
   float: right;
+  margin: 0px;
 }
 </style>

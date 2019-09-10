@@ -72,8 +72,9 @@ export default {
   margin-top: -16px;
   /* background-color: #000; */
   float: right;
-  background: url("../../../assets/img/nextPressed.png") no-repeat center;
+  background: url("../../../assets/img/nextPressed@2x.png") no-repeat center;
   margin-right: -30px;
+  background-size:  88px;
 }
 a.yd-cell-item{
       color: rgb(66, 66, 66);

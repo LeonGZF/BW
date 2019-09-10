@@ -25,7 +25,7 @@
         <span class="errorinfo">{{message.errorStr}}</span>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -83,7 +83,10 @@ export default {
         return true;
       }
     },
-
+    setContinueBtn(bottom){
+     bottom = bottom + this.$refs.bottom.offsetHeight;
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     continueBtn() {
       if (this.message.continueType) {
         this.$store.commit("rPhone", this.form.phone);
@@ -157,6 +160,9 @@ export default {
         }
       }
     }
+  },
+  created(){
+      window.setContinueBtn = this.setContinueBtn;
   }
 };
 </script>

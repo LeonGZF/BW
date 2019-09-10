@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -62,6 +62,13 @@ export default {
         });
       }
     },
+    setContinueBtn(bottom){
+      if(bottom != "0"){
+         bottom = bottom + this.$refs.bottom.offsetHeight;
+      }
+    
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     validateNomal(info) {
       if (info === "") {
         return this.$Message("必填");
@@ -73,6 +80,7 @@ export default {
     }
   },
   mounted() {
+    window.setContinueBtn = this.setContinueBtn;
     if (this.$store.state.sso.userName) {
       let name = document.getElementsByClassName("username")[0];
       // console.log(email);
