@@ -277,6 +277,7 @@ export default {
     }
   },
   created() {
+     window.setContinueBtn = this.setContinueBtn;
     this.$watch("timer.time", function(newValue, oldValue) {
       const login = this;
       console.log("time----" + this.timer.time);

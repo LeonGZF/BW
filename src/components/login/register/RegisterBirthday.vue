@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -62,6 +62,10 @@ export default {
         return true;
       }
     },
+    setContinueBtn(bottom){
+     bottom = bottom + this.$refs.bottom.offsetHeight;
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     noSetDef() {
       this.message.continueType = true;
       this.form.birthday = "";
@@ -85,6 +89,9 @@ export default {
     if (this.$store.state.form.birthday == "") {
       this.message.continueType = false;
     }
+  },
+  created() {
+     window.setContinueBtn = this.setContinueBtn;
   }
 };
 </script>

@@ -209,12 +209,13 @@ span.errorinfo {
   margin-top: 48px;
 }
 .foot_div {
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   /* left: 50%;
   margin-left: -375px;
   margin-top: 500px; */
   width: 750px;
+  margin-top: 48px;
 }
 #register .active {
   background-color: #cd0505;

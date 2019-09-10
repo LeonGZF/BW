@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom" >
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -76,6 +76,12 @@ export default {
         return;
       }
     },
+    setContinueBtn(bottom){
+      if(bottom != "0"){
+         bottom = bottom + this.$refs.bottom.offsetHeight;
+      }
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     validateMaill(mail) {
       //邮箱格式
       var reg = /^([a-zA-Z]|[0-9])(\w|\-|\.)+@[a-zA-Z0-9|\-]+(\.([a-zA-Z0-9]{2,4}))+$/;
@@ -103,7 +109,7 @@ export default {
   },
   mounted(){
         console.log(this.$store.state.sso);
-
+      window.setContinueBtn = this.setContinueBtn;
     if(this.$store.state.sso.email){
       let email=document.getElementsByClassName("email")[0];
         // console.log(email);

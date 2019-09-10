@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -80,6 +80,10 @@ export default {
       this.message.errortype = true;
       this.message.continueType = false;
       return false;
+    },
+    setContinueBtn(bottom){
+     bottom = bottom + this.$refs.bottom.offsetHeight;
+      this.$refs.bottom.style.bottom=bottom+"px";
     },
     continueBtn() {
       loginReq(this.sso.email, this.form.password).then(res => {
@@ -168,6 +172,7 @@ export default {
   },
   created() {
     this.sso = this.$store.state.sso;
+     window.setContinueBtn = this.setContinueBtn;
   }
 };
 </script>

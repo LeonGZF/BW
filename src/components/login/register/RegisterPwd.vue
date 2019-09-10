@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div class="foot_div">
+    <div class="foot_div" ref="bottom">
       <div
         class="continue"
         v-bind:class="{ 'active' : message.continueType }"
@@ -82,6 +82,10 @@ export default {
         this.form.eyeImg = require("../../../assets/img/eye.png");
       }
     },
+    setContinueBtn(bottom){
+     bottom = bottom + this.$refs.bottom.offsetHeight;
+      this.$refs.bottom.style.bottom=bottom+"px";
+    },
     validatePass(pass) {
       //密碼格式
       var reg = /^[a-zA-Z0-9_]*$/;
@@ -103,6 +107,9 @@ export default {
     let headimg = document.querySelector("#app .header img");
     // console.log(headimg);
     headimg.style.display = "inline-block";
+  },
+  created(){
+      window.setContinueBtn = this.setContinueBtn;
   }
 };
 </script>
