@@ -82,7 +82,9 @@ export default {
       return false;
     },
     setContinueBtn(bottom){
-     bottom = bottom + this.$refs.bottom.offsetHeight;
+     if(bottom != "0"){
+         bottom = bottom + this.$refs.bottom.offsetHeight;
+      }
       this.$refs.bottom.style.bottom=bottom+"px";
     },
     continueBtn() {
