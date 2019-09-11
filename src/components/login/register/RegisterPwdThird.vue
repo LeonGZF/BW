@@ -6,7 +6,7 @@
     <div class="register_content">
       <div class="title">請設定密碼</div>
       <div class="info">
-        <span>密碼包含英數、底線，長度介於6~16個字元</span>
+        <span>密碼包含英數字、底線，長度介於6~16個字元</span>
       </div>
       <div class="input_content">
         <div>
@@ -82,7 +82,9 @@ export default {
       return false;
     },
     setContinueBtn(bottom){
-     bottom = bottom + this.$refs.bottom.offsetHeight;
+     if(bottom != "0"){
+         bottom = bottom + this.$refs.bottom.offsetHeight;
+      }
       this.$refs.bottom.style.bottom=bottom+"px";
     },
     continueBtn() {

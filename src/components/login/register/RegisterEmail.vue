@@ -77,7 +77,7 @@ export default {
       }
     },
     setContinueBtn(bottom){
-      if(bottom != "0"){
+     if(bottom != "0"){
          bottom = bottom + this.$refs.bottom.offsetHeight;
       }
       this.$refs.bottom.style.bottom=bottom+"px";
