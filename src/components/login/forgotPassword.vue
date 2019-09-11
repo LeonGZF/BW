@@ -165,7 +165,7 @@ export default {
     },
     continueBtn() {
       var jsondata =
-        '[{"type":1,"title":"請輸入您的帳號","info":"","isNotSet":0},{"type":2,"title":"重設您的密碼","info":"密碼包含英數、底線，長度介於6~16個字元","isNotSet":0},{"type":3,"title":"重置密碼信件已寄出","info":"已經將密碼重置信寄至","isNotSet":1}]';
+        '[{"type":1,"title":"請輸入您的帳號","info":"","isNotSet":0},{"type":2,"title":"重設您的密碼","info":"密碼包含英數字、底線，長度介於6~16個字元","isNotSet":0},{"type":3,"title":"重置密碼信件已寄出","info":"已經將密碼重置信寄至","isNotSet":1}]';
       var array = JSON.parse(jsondata);
       var currType = this.input.type;
       var mail = this.form.acount;

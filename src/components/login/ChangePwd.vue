@@ -13,7 +13,7 @@
       <div>
         <span>請輸入新密碼</span>
         <input id="p2" v-model="newPwd" type="password" name placeholder="請輸入新密碼"  />
-        <p>密碼包含英數、底線，長度介於6~16個字元</p>
+        <p>密碼包含英數字、底線，長度介於6~16個字元</p>
       </div>
       <div>
         <span>再次輸入新密碼</span>
