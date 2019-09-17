@@ -192,4 +192,7 @@ export default {
   font-size: 40px;
   text-align: center;
 }
+.input_item>input::placeholder{
+  color:#999;
+}
 </style>
