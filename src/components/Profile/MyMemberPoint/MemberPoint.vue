@@ -33,7 +33,7 @@
     <div class="line_m"></div>
 
     <point_group>
-      <point_item slot v-for="i in arr" :title=i.title :date=i.date :point=i.point :last=i.last :plus=i.plus>
+      <point_item slot v-for="(i,index) in arr" :key="index"  :title=i.title :date=i.date :point=i.point :last=i.last :plus=i.plus>
       </point_item>
     </point_group>
 

@@ -50,7 +50,7 @@ export default {
           name: "RegisterMobile"
         });
         // this.message.continueType=false;
-        // TODO 目前会有一个回退到上一页就自动变红的问题
+        // 目前会有一个回退到上一页就自动变红的问题
       }
     },
     validateNomal(info, name) {
@@ -70,7 +70,7 @@ export default {
     },
     noSetDef() {
       this.message.continueType = true;
-      this.form.birthday = "";
+      this.form.birthday = null;
       this.continueBtn();
     }
   },

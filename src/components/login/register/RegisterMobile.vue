@@ -102,6 +102,8 @@ export default {
         let loginProvider = this.$store.state.sso.unionId;
         let loginMethod = this.$store.state.sso.loginType;
         let providerKey = this.$store.state.sso.providerKey;
+        //TODO diviceID
+        let deviceId=this.$store.state.form.deviceId;
         if (loginProvider != "" && loginMethod != "") {
           // alert("三方注册")
           socialRegisterMember(
@@ -113,7 +115,8 @@ export default {
             loginMethod,
             loginProvider,
             name,
-            providerKey
+            providerKey,
+            deviceId
           ).then(res => {
             console.log(res.data);
             if (res.data.errorCode == "200") {
@@ -137,7 +140,7 @@ export default {
           });
         } else {
           // alert("普通注册")
-          register(mail, moblie, sex, birthDate, password, name).then(res => {
+          register(mail, moblie, sex, birthDate, password, name,deviceId).then(res => {
             console.log("普通註冊:",res.data);
             
             if (res.data.errorCode == "200") {

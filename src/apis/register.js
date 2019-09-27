@@ -7,9 +7,9 @@ export function checkMail(mail) {
     } catch (error) {
         return error;
     }
-   
+
 }
-export function register(mail,moblie,sex,birthDate,password,name) {
+export function register(mail,moblie,sex,birthDate,password,name,deviceId) {
     try {
         return request.post('/userCenter/RegisterMember',{
             email: mail,
@@ -17,7 +17,8 @@ export function register(mail,moblie,sex,birthDate,password,name) {
             sex: sex,
             birthDate: birthDate,
             password: password,
-            realName: name
+            realName: name,
+            deviceId: deviceId
         })
     } catch (error) {
         return error;

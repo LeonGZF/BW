@@ -33,7 +33,7 @@ import RegisterEmailOther from '@/components/login/register/RegisterEmailOther'
 import RegisterPwdThird from '@/components/login/register/RegisterPwdThird'
 import RegisterBindSuccess from '@/components/login/register/RegisterBindSuccess'
 
-import Header from '@/components/Mycomp/Header.vue'
+//会员点数相关
 import MemberPoint from '@/components/Profile/MyMemberPoint/MemberPoint'
 import MemberPointNews from '@/components/Profile/MyMemberPoint/MemberPointNews'
 import MemberPointNewsUse from '@/components/Profile/MyMemberPoint/MemberPointNews/Use'

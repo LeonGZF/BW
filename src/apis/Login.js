@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 import store from '@/store/index'
-export function loginReq(username,password) {
+export function loginReq(username,password,deviceId) {
     try {
         return request.post('/Member/LoginMember',{
             userName: username,
-            password: password
+            password: password,
+          deviceId:deviceId
         })
     } catch (error) {
         return error;

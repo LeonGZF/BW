@@ -303,7 +303,7 @@ export default {
         return this.$Message("密碼不能為空");
       }
       if ( this.validateMaill(acount) && this.validatePassword(password)) {
-        loginReq(this.form.acount, this.form.password).then(res => {
+        loginReq(this.form.acount, this.form.password,this.$store.state.form.deviceId).then(res => {
           if (res.data.errorCode == "200") {
             this.message.errortype = false;
             let token = res.data.jDate.Token;

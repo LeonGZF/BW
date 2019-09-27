@@ -19,7 +19,9 @@ const state = {
     sex: 0,
     userName: "",
     birthday: "",
-    phone: ""
+    phone: "",
+    //TODO deviceId
+    deviceId:"666666"
   },
   sso: {
     unionId: "",
