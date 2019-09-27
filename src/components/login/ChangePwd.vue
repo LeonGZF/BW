@@ -142,7 +142,7 @@ export default {
 </script>
 
 <style scoped>
-/* ----------------------------------------头部导航栏 */
+
 #changepwd .tab {
   height: 88px;
   font-size: 34px;
@@ -168,7 +168,7 @@ export default {
   height: 88px;
   background: url("../../assets/img/backBlackNormal.png") no-repeat center;
 }
-/* ------------------------------------------主体输入框部分 */
+
 #changepwd .main {
   padding: 0 40px;
   text-align: left;

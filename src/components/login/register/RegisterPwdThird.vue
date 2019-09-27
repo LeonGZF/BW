@@ -187,7 +187,7 @@ export default {
   float: left;
 }
 
-/* 小眼睛 */
+
 .pas_eye {
   position: absolute;
   width: 48px;

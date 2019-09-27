@@ -126,7 +126,7 @@ export default {
 
 <style>
 .progress .bar {
-  /* 第一步 */
+  
   width: 107px;
   height: 8px;
   background: #cd0505;

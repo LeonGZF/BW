@@ -54,7 +54,7 @@ export default {
 };
 </script>
 <style>
-/* 头部 */
+
 .main {
   width: 750px;
   margin: 0 auto;
@@ -74,13 +74,13 @@ export default {
   float: left;
 }
 
-/* 进度条 */
+
 .progress {
   width: 750px;
   height: 8px;
 }
 
-/* 整体输入框样式 */
+
 .info_email {
   margin: 0 4px;
   color :rgb(205,5,5);

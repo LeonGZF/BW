@@ -28,24 +28,24 @@ export default {
 </script>
 
 <style scoped>
-/* 背景层 */
+
 /* .yd-dialog-white-mask {
     
 } */
-/* 最外层 */
+
 .yd-toast {
   width: 320px;
   height: 336px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  /* margin:500px auto; */
+  
   position: fixed;
   top: 500px;
   left: 214px;
 }
 
-/* 没传icon的默认样式 */
+
 .yd-toast-none-icon {
   width: 112px;
   height: 112px;
@@ -54,7 +54,7 @@ export default {
   background-size: 1.493333rem;
 }
 
-/* 正确错误 */
+
 .yd-toast-success-icon {
   width: 112px;
   height: 112px;
@@ -69,7 +69,7 @@ export default {
 
 } */
 
-/* 文字部分 */
+
 .yd-toast-content {
   margin-top: -24px;
   font-size: 32px;
