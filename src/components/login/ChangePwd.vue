@@ -37,6 +37,7 @@ Vue.prototype.$dialog = {
 import { updatePassword } from "@/apis/proflie";
 import SendMessageToApp from "../../jsAppInteractive/index3.js";
 import { browserVerify } from "@/utils/browserUtil";
+import Cookie from '@/assets/js/cookie'
 // Vue.component('toast',Toast)
 export default {
   data() {
@@ -60,7 +61,7 @@ export default {
   },
   methods: {
     goback() {
-      this.$router.replace("/");
+      this.$router.push("login");
     },
     check() {
        var reg = /^[a-zA-Z0-9_]*$/;
@@ -92,12 +93,22 @@ export default {
         var Password = this.oldPwd;
         var ConfirmPassword = this.newPwd;
         updatePassword(Password, ConfirmPassword).then(res => {
+        
           if (res.data.errorCode == "200") {
             this.$dialog.toast({
               mes: this.mes,
               icon: "success",
               timeout: 1500
             });
+            let me= this;
+            setTimeout(function(){
+              me.$router.push("login");
+            },1500);
+            var token = res.data.jDate.Token;
+             sessionStorage.setItem('isLogin', false);
+              Cookie.setCookie({
+                "token": data
+              }, 10)
           }else{
             this.$Message("原密碼輸入錯誤");
           }
@@ -142,7 +153,7 @@ export default {
 </script>
 
 <style scoped>
-/* ----------------------------------------头部导航栏 */
+
 #changepwd .tab {
   height: 88px;
   font-size: 34px;
@@ -168,7 +179,7 @@ export default {
   height: 88px;
   background: url("../../assets/img/backBlackNormal.png") no-repeat center;
 }
-/* ------------------------------------------主体输入框部分 */
+
 #changepwd .main {
   padding: 0 40px;
   text-align: left;

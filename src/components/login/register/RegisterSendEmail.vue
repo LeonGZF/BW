@@ -143,7 +143,7 @@ export default {
 
 <style scoped>
 .progress .bar {
-  /* 最后一步 */
+  
   width: 750px;
   height: 8px;
   background: #cd0505;

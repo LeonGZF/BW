@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-/* ----------------------------------------头部导航栏 */
+
 .tab {
   height: 88px;
   font-size: 34px;
@@ -98,7 +98,7 @@ export default {
   height: 88px;
   background: url("../../../assets/img/backBlackNormal.png") no-repeat center;
 }
-/* ---------------------------------下面输入框部分 */
+
 
 
 input {

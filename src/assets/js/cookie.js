@@ -16,9 +16,11 @@ export default {
           console.log(d.toGMTString());
           cookieString = cookieString + "; expires=" + d.toGMTString();
         }
+        console.log("domian"+cookieString);
         if(domain){
           cookieString=cookieString+";domain="+domain;
         }
+        console.log("domian"+cookieString);
         document.cookie = cookieString;
       }
     }

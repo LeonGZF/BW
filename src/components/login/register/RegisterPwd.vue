@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style scoped>
-  /* 第二步 */
+  
 .progress .bar {
   width: 214px;
   height: 8px;
@@ -125,7 +125,7 @@ export default {
   float: left;
 }
 
-/* 小眼睛 */
+
 .pas_eye {
   position: absolute;
   width: 48px;

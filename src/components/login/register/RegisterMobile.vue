@@ -49,6 +49,7 @@ import {
 import SendMessageToApp from "../../../jsAppInteractive/index3.js";
 import { browserVerify } from "@/utils/browserUtil";
 import { loginReq } from "@/apis/Login";
+import Cookie from "@/assets/js/cookie"
 
 export default {
   data() {
@@ -104,6 +105,9 @@ export default {
         let providerKey = this.$store.state.sso.providerKey;
         //TODO diviceID
         let deviceId=this.$store.state.form.deviceId;
+        // let deviceId=document.cookie.split("=")[1]
+        console.log("deviceId",deviceId);
+        
         if (loginProvider != "" && loginMethod != "") {
           // alert("三方注册")
           socialRegisterMember(
@@ -174,7 +178,7 @@ export default {
 
 <style scoped>
 .progress .bar {
-  /* 第六步 */
+  
   width: 642px;
   height: 8px;
   background: #cd0505;

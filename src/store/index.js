@@ -21,7 +21,7 @@ const state = {
     birthday: "",
     phone: "",
     //TODO deviceId
-    deviceId:"666666"
+    deviceId:document.cookie.split("=")[1]
   },
   sso: {
     unionId: "",

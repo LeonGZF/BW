@@ -100,13 +100,13 @@ export default {
 
 <style scoped>
 .progress .bar {
-  /* 第五步 */
+  
   width: 535px;
   height: 8px;
   background: #cd0505;
   float: left;
 }
-/* 去掉生日默认样式 */
+
 input[type="date"] {
   -webkit-appearance: none;
 }

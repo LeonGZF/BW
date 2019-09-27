@@ -88,7 +88,7 @@ export default {
       this.$refs.bottom.style.bottom=bottom+"px";
     },
     continueBtn() {
-      loginReq(this.sso.email, this.form.password).then(res => {
+      loginReq(this.sso.email, this.form.password,this.$store.state.form.deviceId).then(res => {
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
           let token = res.data.jDate.Token;
@@ -187,7 +187,7 @@ export default {
   float: left;
 }
 
-/* 小眼睛 */
+
 .pas_eye {
   position: absolute;
   width: 48px;
