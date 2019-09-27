@@ -1,0 +1,48 @@
+//header设置
+@fullWidth: 750px;
+@headerHeight: 88px;
+@borderBottomS: 2px solid rgb(220, 220, 220);
+@borderBottomMRed: 4px solid rgb(205, 5, 5);
+@fontPFMedium: "PingFangTC-Medium";
+@greyishBrown: #424242;
+@expireMT:30px;
+@paddingLeftRight: 30px;
+@red:rgb(205,5,5);
+
+//p标签灰色字部分
+.pDefault(@textalign:right) {
+  color: rgba(66, 66, 66, .5);
+  font-size: 28px;
+  text-align: @textalign;
+  letter-spacing: 0;
+  font-family: @fontPFMedium;
+  margin-bottom: 12px;
+  height: 40px;
+  line-height: 40px;
+}
+
+//p标签左侧标签
+.pTitle() {
+  float: left;
+  font-family: @fontPFMedium;
+  font-size: 32px;
+  letter-spacing: 0;
+  color: @greyishBrown;
+}
+
+//点数前面那个黑色字的通用样式
+.pointDefault() {
+  font-size: 40px;
+  color: @greyishBrown;
+  margin:0 8px;
+  //height: 40px;
+  //line-height: 40px;
+  vertical-align: -4px;
+
+}
+//分割线 不需要左移 传0
+.lineDefalut(@ml:-@paddingLeftRight) {
+  width: @fullWidth;
+  background-color: rgb(220, 220, 220);
+  margin-left: @ml;
+}

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-Vue.use(Router)
 
+Vue.use(Router)
 
 
 import login from '@/components/login/login'
@@ -33,6 +33,11 @@ import RegisterEmailOther from '@/components/login/register/RegisterEmailOther'
 import RegisterPwdThird from '@/components/login/register/RegisterPwdThird'
 import RegisterBindSuccess from '@/components/login/register/RegisterBindSuccess'
 
+import Header from '@/components/Mycomp/Header.vue'
+import MemberPoint from '@/components/Profile/MyMemberPoint/MemberPoint'
+import MemberPointNews from '@/components/Profile/MyMemberPoint/MemberPointNews'
+import MemberPointNewsUse from '@/components/Profile/MyMemberPoint/MemberPointNews/Use'
+import MemberPointNewsGet from '@/components/Profile/MyMemberPoint/MemberPointNews/Get'
 
 
 const router = new Router({
@@ -57,12 +62,32 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: login,
+    }, {
+      path: '/memberPoint',
+      name: 'MemberPoint',
+      component: MemberPoint,
+    }, {
+      path: '/memberPointnews',
+      name: 'MemberPointNews',
+      component: MemberPointNews,
+      children: [
+        {
+          path:'/memberPointnews/use',
+          name:'MemberPointNewsUse',
+          component:MemberPointNewsUse,
+        },
+        {
+          path:'/memberPointnews/get',
+          name:'MemberPointNewsGet',
+          component:MemberPointNewsGet,
+        }
+      ]
     },
     {
       path: '/register',
       name: '',
       component: register,
-      children:[
+      children: [
         {
           path: '',
           name: 'RegisterEmail',
@@ -82,7 +107,7 @@ const router = new Router({
           path: '/register/truename',
           name: 'RegisterTrueName',
           component: RegisterTrueName,
-        },        
+        },
         {
           path: '/register/birthday',
           name: 'RegisterBirthday',
@@ -119,16 +144,16 @@ const router = new Router({
           component: RegisterBindSuccess,
         },
       ]
-    },{
+    }, {
       path: '/termandpolicy',
       name: 'termAndPolicy',
       component: termAndPolicy,
-    },{
+    }, {
       path: '/forgotPassword',
       name: 'forgotPassword',
       component: forgotPassword,
-    
-    },{
+
+    }, {
       path: '/changepwd',
       name: 'Changepwd',
       component: Changepwd,

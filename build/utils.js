@@ -19,17 +19,17 @@ exports.cssLoaders = function (options) {
     loader: 'css-loader',
     options: {
       sourceMap: options.sourceMap,
-      importLoaders:2 //在css-loader 前 应用的loader 的数据，默认为0。
+      importLoaders: 2 //在css-loader 前 应用的loader 的数据，默认为0。
       // 如果不加这个，@import的外部css文件将不能正常转换。
       //如若不行，试着调大数字
       //记住：更改后，必须重启项目，否则不生效！！！
     }
   }
 
-  const px2remLoader ={
-    loader:'px2rem-loader',
-    options:{
-      remUnit:75 //设计稿的1/10 ，我们的设计稿是750
+  const px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      remUnit: 75 //设计稿的1/10 ，我们的设计稿是750
     }
   }
 
@@ -42,8 +42,8 @@ exports.cssLoaders = function (options) {
   }
 
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader,px2remLoader, postcssLoader] : [cssLoader,px2remLoader]
+  function generateLoaders(loader, loaderOptions) {
+    const loaders = options.usePostCSS ? [cssLoader, px2remLoader, postcssLoader] : [cssLoader, px2remLoader]
 
     if (loader) {
       loaders.push({
@@ -70,8 +70,13 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
+    less: generateLoaders('less').concat({
+      loader: 'sass-resources-loader',
+      options: {
+        resources: path.resolve(__dirname, '../src/assets/styles/variable.less')
+      }
+    }),
+    sass: generateLoaders('sass', {indentedSyntax: true}),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')

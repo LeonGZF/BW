@@ -5,7 +5,7 @@ import App from './App'
 import 'lib-flexible'
 import Vuex from 'vuex'
 import store from './store'
-import router from './router'
+import router from './router/Router'
 import './assets/styles/reset.css'
 import './assets/styles/border.css'
 const HelloJs = require('hellojs/dist/hello.all.min.js');

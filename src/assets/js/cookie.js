@@ -3,7 +3,7 @@ export default {
    * [setCookie 设置cookie]
    * @param {[传入类型]} json [键是cookie的键,值是cookie的值]
    */
-  setCookie: function (json, exdays) {
+  setCookie: function (json, exdays ,domain) {
 
     if (json) {
       for (let k in json) {
@@ -15,6 +15,9 @@ export default {
           d.setTime(d.getTime() + exdays * 1000 * 60 * 60 * 24);
           console.log(d.toGMTString());
           cookieString = cookieString + "; expires=" + d.toGMTString();
+        }
+        if(domain){
+          cookieString=cookieString+";domain="+domain;
         }
         document.cookie = cookieString;
       }
