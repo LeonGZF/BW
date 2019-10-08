@@ -200,6 +200,6 @@ export default {
   text-align: center;
 }
 .input_item>input::placeholder{
-  color:#999;
+  color:#333333;
 }
 </style>
