@@ -11,6 +11,7 @@
 </template>
 <script>
 import { browserVerify } from "@/utils/browserUtil";
+import SendMessageToApp from "../../jsAppInteractive/index3.js";
 export default {
   methods: {
     callBack() {
