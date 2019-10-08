@@ -42,7 +42,7 @@ const mutations = {
     sessionStorage.setItem('isLogin', true);
     Cookie.setCookie({
       "token": data
-    }, 10)
+    }, 10,'.bwplus.com.tw');
     var object = new Object();
     object.Token = data;
     var status = new Object();

@@ -108,7 +108,7 @@ export default {
              sessionStorage.setItem('isLogin', false);
               Cookie.setCookie({
                 "token": data
-              }, 10)
+              }, 10,'.bwplus.com.tw')
           }else{
             this.$Message("原密碼輸入錯誤");
           }

@@ -423,6 +423,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$store.state.form)
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
       //第三方回调     
