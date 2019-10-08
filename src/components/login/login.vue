@@ -323,16 +323,16 @@ export default {
 
             //验证未激活状态
 
-            // sendActiveMail(acount, "emailCheck").then(res => {
-            //   if (res.data.errorCode == "200") {
-            //     this.$store.state.form.acount = acount;
-            //     let timer = setTimeout(() => {
-            //       this.$router.push({
-            //         name: "RegisterSendEmail"
-            //       });
-            //     }, 1000);
-            //   }
-            // });
+            sendActiveMail(acount, "emailCheck").then(res => {
+              if (res.data.errorCode == "200") {
+                this.$store.state.form.acount = acount;
+                let timer = setTimeout(() => {
+                  this.$router.push({
+                    name: "RegisterSendEmail"
+                  });
+                }, 1000);
+              }
+            });
             sendAllMail(acount).then(res => {
               if (res.data.errorCode == "200") {
                 this.$store.state.form.acount = acount;
@@ -423,6 +423,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$store.state.form)
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
       //第三方回调     
