@@ -1,13 +1,15 @@
 export default {
   /**
    * [setCookie 设置cookie]
-   * @param {[传入类型]} json [键是cookie的键,值是cookie的值]
+   * @param json  [键是cookie的键,值是cookie的值]
+   * @param exdays  过期时间 天
+   * @param domain  host 域
    */
   setCookie: function (json, exdays ,domain) {
 
     if (json) {
       for (let k in json) {
-        var cookieString = k + "=" + json[k];
+        var cookieString = k + "=" + json[k]+";path='/'";
         console.log(exdays);
         //判断是否设置过期时间 
         if (exdays > 0) {
