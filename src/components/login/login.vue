@@ -8,7 +8,7 @@
     <div class="login_input_contnet">
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
-      <div id="appleid-signin login_item" class="signin-button" data-color="black" data-border="true" data-type="sign in">使用Apple登入</div>
+      <div id="appleid-signin login_item" class="signin-button" @click="auth('apple')">使用Apple登入</div>
       <p class="line">
         <span class="line_or">或</span>
       </p>
