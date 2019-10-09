@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     goback() {
-      this.$router.push("login");
+      this.$router.push("/");
     },
     check() {
        var reg = /^[a-zA-Z0-9_]*$/;
