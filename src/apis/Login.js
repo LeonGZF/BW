@@ -20,14 +20,16 @@ export function loginOut() {
         return error;
     }
 }
-export function SocialLogin(sociaId,loginMethod,sociaToken,email) {
+export function SocialLogin(sociaId,loginMethod,sociaToken,email,deviceId) {
     // alert(email,sociaToken,sociaId,loginMethod)
     try {
         return request.post('/Member/SocialLoginMember',{
             id: sociaId,
             loginMethod: loginMethod,
             token: sociaToken,
-            email: email
+            email: email,
+            deviceId:deviceId
+
         })
     } catch (error) {
         return error;

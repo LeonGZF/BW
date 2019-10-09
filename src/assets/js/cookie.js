@@ -2,8 +2,8 @@ export default {
   /**
    * [setCookie 设置cookie]
    * @param json  [键是cookie的键,值是cookie的值]
-   * @param exdays  过期时间 天
-   * @param domain  host 域
+   * @param exdays number 过期时间 天
+   * @param domain string host 域
    */
   setCookie: function (json, exdays ,domain) {
 

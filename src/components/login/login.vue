@@ -8,6 +8,7 @@
     <div class="login_input_contnet">
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
+      <div id="appleid-signin" class="signin-button" data-color="black" data-border="true" data-type="sign in"></div>
       <p class="line">
         <span class="line_or">或</span>
       </p>
@@ -58,6 +59,8 @@
   </div>
 </template>
 <script>
+//苹果登录
+import AppleButton from '@/assets/js/appleButton';
 //先引入接口
 import { loginReq, SocialLogin } from "@/apis/Login";
 import SendMessageToApp from "../../jsAppInteractive/index3.js";
@@ -159,13 +162,16 @@ export default {
         //浏览器测试 - 模拟数据
 
         // let unionID = "dadwqddsafafawafdasdw";
+        let unionID = "weiyibiaoshi";
         // var email = "guozhifu580230@gmail.com";
-        // var providerKey = "1111111111322sdfdsfds";
-        // var userName = "黄健";
-        // console.log("111");
-        // this.sendUserInformation(unionID, userName, email, loginMethod);
+        var email = "chenhongbiao@tomonline-inc.com";
+        var providerKey = "1111111111322sdfdsfds";
+        var userName = "黄健";
+        console.log("111");
+        this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
+    //第三方登录
     sendUserInformation(id, userName, email, loginType) {
       // alert(
       //   "id:" +
@@ -183,7 +189,9 @@ export default {
       console.log(unionID);
       var email = email;
       var providerKey = userName;
-      SocialLogin(unionID, loginType, providerKey, email).then(res => {
+      var deviceId=this.$store.state.form.deviceId;
+      console.log(deviceId,"deviceid是");
+      SocialLogin(unionID, loginType, providerKey, email,"bbbbbbbbbbbb").then(res => {
         // alert("socialLogin"+ JSON.stringify(res.data));
 
         if (res.data.errorCode == "200") {
@@ -291,7 +299,7 @@ export default {
           //     name: "register"
           //   });
           // }
-          
+
         }
       });
     },
@@ -317,7 +325,7 @@ export default {
             }else{
               this.$router.push("/");
             }
-            
+
           } else if (res.data.errorCode == "204") {
             this.$Message("帳號未驗證");
 
@@ -426,7 +434,7 @@ export default {
     console.log(this.$store.state.form)
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
-      //第三方回调     
+      //第三方回调
       this.$bridge.registerhandler("getActionBar", function(
         data,
         responseCallback
@@ -439,7 +447,7 @@ export default {
           gotoLogin=true;
       }
     }
-    
+
     this.$store.commit("setNative", gotoLogin);
     this.isClosePage = this.$store.state.native.gotoLogin;
   },
@@ -531,9 +539,10 @@ export default {
   background-position: 32px center;
   background-repeat: no-repeat;
   line-height: 88px;
-  -moz-box-shadow: 0px 4px 8px 0px rgb(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 4px 8px 0px rgb(0, 0, 0, 0.1);
-  box-shadow: 0px 4px 8px 0px rgb(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px !important;
 }
 .line {
   width: 600px;
@@ -669,5 +678,14 @@ span.errorinfo {
 .singup_info,.termAndPolicy_info {
   color: #cd0505;
   cursor: pointer;
+}
+
+/*  苹果登录*/
+.signin-button {
+  width: 600px;
+  height: 88px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 </style>
