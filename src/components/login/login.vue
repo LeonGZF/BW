@@ -453,6 +453,9 @@ export default {
 
     this.$store.commit("setNative", gotoLogin);
     this.isClosePage = this.$store.state.native.gotoLogin;
+    if(this.$store.state.isLogin){
+      this.$router.push("/");
+    }
   },
   mounted() {
     let BW =this;

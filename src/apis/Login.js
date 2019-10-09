@@ -20,6 +20,15 @@ export function loginOut() {
         return error;
     }
 }
+export function tmpLogin() {
+    try {
+        return request.post('/Member/tmpLogin',{
+            token: store.state.form.deviceId,
+        })
+    } catch (error) {
+        return error;
+    }
+}
 export function SocialLogin(sociaId,loginMethod,sociaToken,email,deviceId) {
     // alert(email,sociaToken,sociaId,loginMethod)
     try {
