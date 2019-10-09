@@ -142,6 +142,7 @@ export default {
       }
     },
     logOut() {
+      
       loginOut().then(reg=>{
         if(reg.data.errorCode=='200'){
           console.log('登出');

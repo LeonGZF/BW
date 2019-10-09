@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 //引入自己封装好的cookie方法
 import Cookie from '../assets/js/cookie'
 import SendMessageToApp from "../jsAppInteractive/index3.js";
+import { tmpLogin } from "@/apis/Login.js";
 import { browserVerify } from "@/utils/browserUtil";
 import Bridge from '../jsAppInteractive/iosJsBridge.js'
 Vue.use(Vuex);
@@ -70,18 +71,60 @@ const mutations = {
     state.isLogin = false;
     sessionStorage.removeItem('isLogin')
     sessionStorage.removeItem('Email');
-    Cookie.deleteCookie("token")
-    if (browserVerify.verifyBW()) {
-      var status = new Object();
-      status.login = false;
-      if (browserVerify.verifyAndroid()) {
-        SendMessageToApp("setLoginStatus", JSON.stringify(status))
+    let token="";
+    if(state.form.deviceId){
+      tmpLogin().then(reg=>{
+        if(reg.data.errorCode == 200){
+          token = reg.data.jDate.Token;
+        }
+        if(!token){
+          Cookie.deleteCookie("token");
+        }else{
+          Cookie.setCookie({
+            "token": data
+          }, 10,'.bwplus.com.tw');
+        }
+        if (browserVerify.verifyBW()) {
+          var object = new Object();
+          object.Token = token;
+          var status = new Object();
+          status.login = false;
+          if (browserVerify.verifyAndroid()) {
+            SendMessageToApp("setLoginStatus", JSON.stringify(status));
+            SendMessageToApp("saveToken", JSON.stringify(object));
+          }
+          if (browserVerify.verifyIos()) {
+            //判断IOS
+             window.webkit.messageHandlers.setLoginStatus.postMessage(status);
+             window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
+          }
+        }
+      });
+    }else{
+      if(!token){
+        Cookie.deleteCookie("token");
+      }else{
+        Cookie.setCookie({
+          "token": data
+        }, 10,'.bwplus.com.tw');
       }
-      if (browserVerify.verifyIos()) {
-        //判断IOS
-         window.webkit.messageHandlers.setLoginStatus.postMessage(status);
+      if (browserVerify.verifyBW()) {
+        var object = new Object();
+        object.Token = token;
+        var status = new Object();
+        status.login = false;
+        if (browserVerify.verifyAndroid()) {
+          SendMessageToApp("setLoginStatus", JSON.stringify(status));
+          SendMessageToApp("saveToken", JSON.stringify(object));
+        }
+        if (browserVerify.verifyIos()) {
+          //判断IOS
+           window.webkit.messageHandlers.setLoginStatus.postMessage(status);
+           window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
+        }
       }
     }
+    
   },
 
   //r表示register
