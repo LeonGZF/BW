@@ -194,7 +194,7 @@ export default {
       var providerKey = userName;
       var deviceId=this.$store.state.form.deviceId;
       console.log(deviceId,"deviceid是");
-      SocialLogin(unionID, loginType, providerKey, email,"bbbbbbbbbbbb").then(res => {
+      SocialLogin(unionID, loginType, providerKey, email,deviceId).then(res => {
         // alert("socialLogin"+ JSON.stringify(res.data));
 
         if (res.data.errorCode == "200") {

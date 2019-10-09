@@ -36,7 +36,7 @@ export function UpdateMember(token,loginProvider,type,providerKey) {
         return error;
     }
 }
-export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMethod,loginProvider,name,providerKey) {
+export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMethod,loginProvider,name,providerKey,deviceId) {
     try {
         return request.post('/userCenter/SocialRegisterMember',{
             email: mail,
@@ -48,7 +48,8 @@ export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMet
             realName:name,
             displayName:providerKey,
             password:password,
-            token:providerKey
+            token:providerKey,
+            deviceId: deviceId
         })
     } catch (error) {
         return error;
