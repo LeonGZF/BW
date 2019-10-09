@@ -144,11 +144,12 @@ export default {
     logOut() {
       
       loginOut().then(reg=>{
+        let token 
         if(reg.data.errorCode=='200'){
           console.log('登出');
-
+          token = reg.data.jDate.Token;
         }
-        this.$store.commit("LOGOUT");
+        this.$store.commit("LOGOUT",token);
         window.location.reload();
       });
 

@@ -44,6 +44,9 @@ const mutations = {
     Cookie.setCookie({
       "token": data
     }, 10,'.bwplus.com.tw');
+    Cookie.setCookie({
+      "token": data
+    }, 10);
     var object = new Object();
     object.Token = data;
     var status = new Object();
@@ -65,63 +68,35 @@ const mutations = {
     state.Email = data;
     sessionStorage.setItem('Email', data);
   },
-  LOGOUT: (state) => {
+  LOGOUT: (state,token) => {
     //登出的时候要清除token
     state.token = null;
     state.isLogin = false;
     sessionStorage.removeItem('isLogin')
     sessionStorage.removeItem('Email');
-    let token="";
-    if(state.form.deviceId){
-      tmpLogin().then(reg=>{
-        if(reg.data.errorCode == 200){
-          token = reg.data.jDate.Token;
-        }
-        if(!token){
-          Cookie.deleteCookie("token");
-        }else{
-          Cookie.setCookie({
-            "token": data
-          }, 10,'.bwplus.com.tw');
-        }
-        if (browserVerify.verifyBW()) {
-          var object = new Object();
-          object.Token = token;
-          var status = new Object();
-          status.login = false;
-          if (browserVerify.verifyAndroid()) {
-            SendMessageToApp("setLoginStatus", JSON.stringify(status));
-            SendMessageToApp("saveToken", JSON.stringify(object));
-          }
-          if (browserVerify.verifyIos()) {
-            //判断IOS
-             window.webkit.messageHandlers.setLoginStatus.postMessage(status);
-             window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
-          }
-        }
-      });
+    if(!token){
+      //Cookie.deleteCookie("token");
     }else{
-      if(!token){
-        Cookie.deleteCookie("token");
-      }else{
-        Cookie.setCookie({
-          "token": data
-        }, 10,'.bwplus.com.tw');
+      Cookie.setCookie({
+        "token": token
+      }, 10,'.bwplus.com.tw');
+      Cookie.setCookie({
+        "token": token
+      }, 10);
+    }
+    if (browserVerify.verifyBW()) {
+      var object = new Object();
+      object.Token = token;
+      var status = new Object();
+      status.login = false;
+      if (browserVerify.verifyAndroid()) {
+        SendMessageToApp("setLoginStatus", JSON.stringify(status));
+        SendMessageToApp("saveToken", JSON.stringify(object));
       }
-      if (browserVerify.verifyBW()) {
-        var object = new Object();
-        object.Token = token;
-        var status = new Object();
-        status.login = false;
-        if (browserVerify.verifyAndroid()) {
-          SendMessageToApp("setLoginStatus", JSON.stringify(status));
-          SendMessageToApp("saveToken", JSON.stringify(object));
-        }
-        if (browserVerify.verifyIos()) {
-          //判断IOS
-           window.webkit.messageHandlers.setLoginStatus.postMessage(status);
-           window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
-        }
+      if (browserVerify.verifyIos()) {
+        //判断IOS
+         window.webkit.messageHandlers.setLoginStatus.postMessage(status);
+         window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
       }
     }
     
