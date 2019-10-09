@@ -8,7 +8,7 @@
     <div class="login_input_contnet">
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
-      <div id="appleid-signin" class="signin-button" data-color="black" data-border="true" data-type="sign in"></div>
+      <div id="appleid-signin login_item" class="signin-button" data-color="black" data-border="true" data-type="sign in">使用Apple登入</div>
       <p class="line">
         <span class="line_or">或</span>
       </p>
@@ -60,7 +60,7 @@
 </template>
 <script>
 //苹果登录
-import AppleButton from '@/assets/js/appleButton';
+// import AppleButton from '@/assets/js/appleButton';
 //先引入接口
 import { loginReq, SocialLogin } from "@/apis/Login";
 import SendMessageToApp from "../../jsAppInteractive/index3.js";
@@ -128,8 +128,11 @@ export default {
         case "facebook":
           loginMethod = 2;
           break;
+        case "apple":
+          loginMethod = 4;
+          break;
       }
-      // 1.传入参数给手机端 是那个点击 2 google 3 facebook
+      // 1.传入参数给手机端 是那个点击 2 google 3 facebook 4 apple
       console.log("loginMethod" + loginMethod);
       if (browserVerify.verifyBW()) {
         //BW APP
@@ -162,13 +165,13 @@ export default {
         //浏览器测试 - 模拟数据
 
         // let unionID = "dadwqddsafafawafdasdw";
-        let unionID = "weiyibiaoshi";
-        // var email = "guozhifu580230@gmail.com";
-        var email = "chenhongbiao@tomonline-inc.com";
-        var providerKey = "1111111111322sdfdsfds";
-        var userName = "黄健";
-        console.log("111");
-        this.sendUserInformation(unionID, userName, email, loginMethod);
+        // let unionID = "weiyibiaoshi";
+        // // var email = "guozhifu580230@gmail.com";
+        // var email = "chenhongbiao@tomonline-inc.com";
+        // var providerKey = "1111111111322sdfdsfds";
+        // var userName = "黄健";
+        // console.log("111");
+        // this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     //第三方登录
@@ -683,9 +686,27 @@ span.errorinfo {
 /*  苹果登录*/
 .signin-button {
   width: 600px;
-  height: 88px;
-  border-radius: 4px;
-  overflow: hidden;
+  /*height: 88px;*/
+  /*border-radius: 4px;*/
+  /*overflow: hidden;*/
   margin: 0 auto;
+  /*background: #000;*/
+
+  font-family: PingFangHK-Semibold, sans-serif;
+  font-size: 32px; /*drp*/
+  color: #fff;
+  text-align: center;
+  background-color: #000;
+  background-image: url("../../assets/img/google@2x.png");
+  background-size: 56px 56px;
+  background-position: 32px center;
+  background-repeat: no-repeat;
+  line-height: 88px;
+  -moz-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px !important;
 }
+
+
 </style>
