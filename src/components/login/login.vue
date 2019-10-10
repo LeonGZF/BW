@@ -192,9 +192,7 @@ export default {
       console.log(unionID);
       var email = email;
       var providerKey = userName;
-      var deviceId=this.$store.state.form.deviceId;
-      console.log(deviceId,"deviceid是");
-      SocialLogin(unionID, loginType, providerKey, email,deviceId).then(res => {
+      SocialLogin(unionID, loginType, providerKey, email).then(res => {
         // alert("socialLogin"+ JSON.stringify(res.data));
 
         if (res.data.errorCode == "200") {
@@ -314,7 +312,7 @@ export default {
         return this.$Message("密碼不能為空");
       }
       if ( this.validateMaill(acount) && this.validatePassword(password)) {
-        loginReq(this.form.acount, this.form.password,this.$store.state.form.deviceId).then(res => {
+        loginReq(this.form.acount, this.form.password,this.$store.state.form).then(res => {
           if (res.data.errorCode == "200") {
             this.message.errortype = false;
             let token = res.data.jDate.Token;

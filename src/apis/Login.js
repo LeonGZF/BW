@@ -1,11 +1,14 @@
 import request from '@/utils/request'
 import store from '@/store/index'
-export function loginReq(username,password,deviceId) {
+import Cookie from '@/assets/js/cookie'
+
+var device_id=Cookie.getCookie(document.cookie,"device_id");
+export function loginReq(username,password) {
     try {
         return request.post('/Member/LoginMember',{
             userName: username,
             password: password,
-          deviceId:deviceId
+          deviceId:device_id
         })
     } catch (error) {
         return error;
@@ -23,13 +26,13 @@ export function loginOut() {
 export function tmpLogin() {
     try {
         return request.post('/Member/tmpLogin',{
-            token: store.state.form.deviceId,
+            token: device_id
         })
     } catch (error) {
         return error;
     }
 }
-export function SocialLogin(sociaId,loginMethod,sociaToken,email,deviceId) {
+export function SocialLogin(sociaId,loginMethod,sociaToken,email) {
     // alert(email,sociaToken,sociaId,loginMethod)
     try {
         return request.post('/Member/SocialLoginMember',{
@@ -37,7 +40,7 @@ export function SocialLogin(sociaId,loginMethod,sociaToken,email,deviceId) {
             loginMethod: loginMethod,
             token: sociaToken,
             email: email,
-            deviceId:deviceId
+            deviceId:device_id
 
         })
     } catch (error) {

@@ -21,7 +21,6 @@ const state = {
     userName: "",
     birthday: "",
     phone: "",
-    //TODO deviceId
     deviceId:Cookie.getCookie(window.document.cookie, "device_id")
   },
   sso: {

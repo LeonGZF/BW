@@ -1,4 +1,8 @@
 import request from '@/utils/request'
+import Cookie from '@/assets/js/cookie'
+
+var device_id=Cookie.getCookie(document.cookie,"device_id")
+
 export function checkMail(mail) {
     try {
         return request.post('/userCenter/CheckEmailAvailable',{
@@ -9,7 +13,7 @@ export function checkMail(mail) {
     }
 
 }
-export function register(mail,moblie,sex,birthDate,password,name,deviceId) {
+export function register(mail,moblie,sex,birthDate,password,name) {
     try {
         return request.post('/userCenter/RegisterMember',{
             email: mail,
@@ -18,7 +22,7 @@ export function register(mail,moblie,sex,birthDate,password,name,deviceId) {
             birthDate: birthDate,
             password: password,
             realName: name,
-            deviceId: deviceId
+            deviceId: device_id
         })
     } catch (error) {
         return error;
@@ -36,7 +40,7 @@ export function UpdateMember(token,loginProvider,type,providerKey) {
         return error;
     }
 }
-export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMethod,loginProvider,name,providerKey,deviceId) {
+export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMethod,loginProvider,name,providerKey) {
     try {
         return request.post('/userCenter/SocialRegisterMember',{
             email: mail,
@@ -49,7 +53,7 @@ export function socialRegisterMember(password,mail,moblie,sex,birthDate,loginMet
             displayName:providerKey,
             password:password,
             token:providerKey,
-            deviceId: deviceId
+            deviceId: device_id
         })
     } catch (error) {
         return error;
