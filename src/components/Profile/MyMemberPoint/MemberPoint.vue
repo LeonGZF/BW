@@ -69,6 +69,7 @@
         backTo: "/",
         //无限滚动加载配置
         count: 0,
+        pages: 0,
         busy: false
 
       }
@@ -86,8 +87,9 @@
             v.infoArr.thisWeekPointCount = res.data.jDate.thisWeekPointCount;
             v.infoArr.totalPoint = res.data.jDate.membershipPointUser.totalPoint;
             v.infoArr.expirePoint = res.data.jDate.membershipPointUser.expirePoint;
-
-            let resArr = res.data.jDate.page.result
+            v.count = res.data.jDate.page.pageNum;
+            v.pages = res.data.jDate.page.pages;
+            let resArr = res.data.jDate.page.result;
             for (let i = 0; i < resArr.length; i++) {
               v.arr.push(resArr[i])
             }
@@ -99,15 +101,21 @@
       },
       loadMore() {
         let v = this;
+        console.log("count", this.count);
         this.count++;
-        console.log("count",this.count);
-        this.busy = true;
-        getPointHistoryActionList(this.count).then(function(res){
+        console.log("count", this.count);
+        if (this.count > this.pages) {
+          this.busy = false;
+          return;
+        } else {
+          this.busy = true;
+        }
+        getPointHistoryActionList(this.count).then(function (res) {
           console.log(res);
           console.log(v.infoArr);
           if (res.data.errorCode == "200") {
-            let resArr = res.data.jDate.page.result
-            if(resArr.length==0){
+            let resArr = res.data.jDate.page.result;
+            if (resArr.length == 0) {
               return
             }
             for (let i = 0; i < resArr.length; i++) {
