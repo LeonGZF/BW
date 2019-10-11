@@ -27,7 +27,9 @@ Vue.prototype.$bridge = Bridge
 Vue.config.productionTip = false
 
 
-
+//无限滚动加载
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
 
 
 
@@ -39,5 +41,4 @@ new Vue({
   store,
   components: { App },
   template: '<App/>',
-  store
 })

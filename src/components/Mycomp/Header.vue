@@ -20,10 +20,14 @@
 <script>
   export default {
     name: "Header",
-    props: ["title"],
+    props: ["title","backTo"],
     methods: {
       callBack() {
-        this.$router.back();
+        if(this.backTo){
+          this.$router.push(this.backTo)
+        }else{
+          this.$router.back();
+        }
       },
 
     }

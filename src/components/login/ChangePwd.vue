@@ -93,7 +93,6 @@ export default {
         var Password = this.oldPwd;
         var ConfirmPassword = this.newPwd;
         updatePassword(Password, ConfirmPassword).then(res => {
-        
           if (res.data.errorCode == "200") {
             this.$dialog.toast({
               mes: this.mes,
@@ -105,10 +104,16 @@ export default {
               me.$router.push("login");
             },1500);
             var token = res.data.jDate.Token;
+            console.log("new Token=",token);
              sessionStorage.setItem('isLogin', false);
-              Cookie.setCookie({
-                "token": data
+            Cookie.setCookie({
+                "token": token
               }, 10,'.bwplus.com.tw')
+            Cookie.setCookie({
+                "token": token
+              }, 10)
+
+            this.$store.commit("TOKEN",token);
           }else{
             this.$Message("原密碼輸入錯誤");
           }

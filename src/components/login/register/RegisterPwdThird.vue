@@ -89,6 +89,7 @@ export default {
     },
     continueBtn() {
       loginReq(this.sso.email, this.form.password).then(res => {
+        console.log("loginReq",res.data);
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
           let token = res.data.jDate.Token;
@@ -96,13 +97,13 @@ export default {
           let unionId = this.sso.unionId;
           let type = this.sso.loginType;
           let providerKey = this.sso.providerKey;
-          console.log("providerKey" + providerKey + " == unionId " + unionId);
+          // console.log("providerKey" + providerKey + " == unionId " + unionId);
           // this.$store.dispatch("UserLogin",token);
           // this.$store.dispatch("Email",token);
           // const redirect =this.$route.query.redirect;
           // this.$router.push(redirect);
           UpdateMember(token, providerKey, type, unionId).then(res => {
-            console.log(res.data);
+            console.log("UpdateMember",res.data);
 
             if (res.data.errorCode == "200") {
               this.$store.commit("LOGIN", token);

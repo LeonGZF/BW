@@ -47,7 +47,7 @@
           <cell-item-label arrow type="link" href="/profile/setting/accountPicker">
             <span slot="left">會員資訊</span>
           </cell-item-label>
-          <cell-item-label>
+          <cell-item-label type="link" href="/memberpoint">
             <span slot="left">會員點數</span>
             <span slot="right"><span class="memberPoint">{{memberPoint}}</span>點</span>
           </cell-item-label>
@@ -144,7 +144,7 @@ export default {
     logOut() {
       
       loginOut().then(reg=>{
-        let token 
+        let token
         if(reg.data.errorCode=='200'){
           console.log('登出');
           token = reg.data.jDate.Token;

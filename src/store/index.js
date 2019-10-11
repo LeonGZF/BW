@@ -100,7 +100,9 @@ const mutations = {
     }
     
   },
-
+  TOKEN :(state,token)=>{
+    state.token=Cookie.getCookie(document.cookie,'token')
+  },
   //r表示register
   rEmail: (state, data) => {
     state.form.acount = data

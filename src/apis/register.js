@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import Cookie from '@/assets/js/cookie'
 
-var device_id=Cookie.getCookie(document.cookie,"device_id")
+let device_id=Cookie.getCookie(document.cookie,"device_id")
 
 export function checkMail(mail) {
     try {

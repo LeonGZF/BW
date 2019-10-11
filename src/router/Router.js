@@ -85,7 +85,7 @@ const router = new Router({
     },
     {
       path: '/register',
-      name: '',
+      name: 'Register',
       component: register,
       children: [
         {

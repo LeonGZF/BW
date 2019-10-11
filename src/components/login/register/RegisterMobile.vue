@@ -122,7 +122,7 @@ export default {
                 this.$router.push({
                   name: "RegisterSendEmail"
                 });
-              } 
+              }
             } else if (res.data.errorCode == "401") {
               alert("注册失败");
             }else if(res.data.errorCode == "705"){
@@ -140,7 +140,7 @@ export default {
           // alert("普通注册")
           register(mail, moblie, sex, birthDate, password, name).then(res => {
             console.log("普通註冊:",res.data);
-            
+
             if (res.data.errorCode == "200") {
               if (this.message.continueType || this.message.isNotSet == 0) {
                 this.$router.push({
@@ -159,6 +159,18 @@ export default {
                   });
                 }, 1000);
               }
+            //可能会出现的邮箱存在的问题
+            else if(res.data.errorCode=="101"){
+              let model=document.querySelector(".yd-toast");
+              model.innerHTML="email已存在,請確認"
+               model.style.display = "block";
+                let timer = setTimeout(() => {
+                  model.style.display = "none";
+                  this.$router.push({
+                    name: "RegisterEmail"
+                  });
+                }, 1000);
+            }
           });
         }
       }
@@ -172,7 +184,7 @@ export default {
 
 <style scoped>
 .progress .bar {
-  
+
   width: 642px;
   height: 8px;
   background: #cd0505;

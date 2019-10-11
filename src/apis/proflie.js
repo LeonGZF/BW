@@ -1,9 +1,14 @@
 import request from '@/utils/request'
 import store from '@/store/index'
+import Cookie from '@/assets/js/cookie'
+
+
+
 export function getThirdMessage (){
     try {
         return request.post('/userCenter/getUserMessage',{
-            token: store.state.token
+            // token: store.state.token
+            token: Cookie.getCookie(document.cookie,'token')
         })
     } catch (error) {
         return error;

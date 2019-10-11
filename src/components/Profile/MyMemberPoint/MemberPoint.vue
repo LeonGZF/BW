@@ -1,7 +1,7 @@
 <template>
   <div id="member_point">
 
-    <Header title="會員點數">
+    <Header title="會員點數" :backTo="backTo">
       <img src="@/assets/img/infoNormal@2x.png" alt="" slot="right" @click="aa">
     </Header>
 
@@ -12,31 +12,34 @@
         </div>
         <div class="right">
           <p>
-            <span class="point">234</span>點
+            <span class="point">{{infoArr.totalPoint}}</span>點
           </p>
           <p>
-            本週獲得點數 23 點
+            本週獲得點數 {{infoArr.thisWeekPointCount}} 點
           </p>
         </div>
       </div>
       <div class="line_s"></div>
       <div class="expire">
         <div class="left">
-          2019.12.31 到期的點數
+          {{infoArr.lastDay}} 到期的點數
         </div>
         <div class="right">
-          <span class="point">12</span>點
+          <span class="point">{{infoArr.expirePoint}}</span>點
         </div>
       </div>
     </div>
 
     <div class="line_m"></div>
 
-    <point_group>
-      <point_item slot v-for="(i,index) in arr" :key="index"  :title=i.title :date=i.date :point=i.point :last=i.last :plus=i.plus>
-      </point_item>
-    </point_group>
 
+    <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+      <point_group>
+        <point_item slot v-for="(i,index) in arr" :key="index" :actionType=i.actionType :date=i.date :point=i.point
+                    :last=i.totalPoint :plus=i.type>
+        </point_item>
+      </point_group>
+    </div>
   </div>
 </template>
 
@@ -49,49 +52,75 @@
   Vue.component('Header', Header);
   Vue.component(MemberPointItem.name, MemberPointItem);
   Vue.component(MemberPointGroup.name, MemberPointGroup);
+  import {getMembershipPointInfo, getPointHistoryActionList} from '@/apis/memberPoint';
+  import myTools from "@/assets/js/myTools";
+
   export default {
     name: "MemberPoint",
-    data( ){
-      return{
-        arr:[
-          {
-            title:"每日閱讀獎勵",
-            date:"2019.08.16",
-            point:"+30",
-            last:200
-          },
-          {
-            title:"兌換文章",
-            date:"2019.08.16",
-            point:"-10",
-            last:200,
-            plus:false
-          },
-          {
-            title:"没有奖励",
-            date:"2019.08.16",
-            point:"+30",
-            last:170
-          },
-          {
-            title:"没登录",
-            date:"2019.08.16",
-            point:"+10",
-            last:100
-          },
-          {
-            title:"还想要奖励?",
-            date:"2019.08.16",
-            point:"+20",
-            last:60
-          },
-        ]
+    data() {
+      return {
+        arr: [],
+        infoArr: {
+          totalPoint: 0,
+          expirePoint: 0,
+          thisWeekPointCount: 0,
+          lastDay: myTools.getCurrentMonthLast()
+        },
+        backTo: "/",
+        //无限滚动加载配置
+        count: 0,
+        busy: false
+
       }
     },
     methods: {
       aa() {
-        alert(11)
+        this.$router.push("/memberpointnews")
+      },
+      getInfo() {
+        let v = this;
+        getMembershipPointInfo().then(function (res) {
+          console.log(v.infoArr);
+          console.log(res);
+          if (res.data.errorCode == "200") {
+            v.infoArr.thisWeekPointCount = res.data.jDate.thisWeekPointCount;
+            v.infoArr.totalPoint = res.data.jDate.membershipPointUser.totalPoint;
+            v.infoArr.expirePoint = res.data.jDate.membershipPointUser.expirePoint;
+
+            let resArr = res.data.jDate.page.result
+            for (let i = 0; i < resArr.length; i++) {
+              v.arr.push(resArr[i])
+            }
+            console.log(v.arr);
+          }
+
+          console.log(v.infoArr);
+        })
+      },
+      loadMore() {
+        let v = this;
+        this.count++;
+        console.log("count",this.count);
+        this.busy = true;
+        getPointHistoryActionList(this.count).then(function(res){
+          console.log(res);
+          console.log(v.infoArr);
+          if (res.data.errorCode == "200") {
+            let resArr = res.data.jDate.page.result
+            if(resArr.length==0){
+              return
+            }
+            for (let i = 0; i < resArr.length; i++) {
+              v.arr.push(resArr[i])
+            }
+          }
+          v.busy = false;
+        })
+
       }
+    },
+    mounted() {
+      this.getInfo()
     }
 
   }

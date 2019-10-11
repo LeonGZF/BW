@@ -90,12 +90,10 @@ export default {
     },
     validatePass(pass) {
       //密碼格式
-      var reg = /^[a-zA-Z0-9_]*$/;
+      var reg = /^[a-zA-Z0-9_]{6,16}$/;
       if (pass == "") {
         this.message.continueType = false;
         return;
-      } else if (pass.length < 6 || pass.length > 16) {
-        return this.$Message("密碼格式錯誤，請重新設定。");
       } else if (!reg.test(pass)) {
         return this.$Message("密碼格式錯誤，請重新設定。");
       } else {

@@ -1,6 +1,6 @@
 <template>
   <div id="member_point_news">
-    <Header title="會員點數資訊"></Header>
+    <Header title="會員點數資訊" :backTo="backTo"></Header>
     <div class="nav">
       <span class="get" @click="goGet" :class="{active:!useActive}">如何獲得點數</span>
       <span class="use" @click="goUse" :class="{active:useActive}">點數使用規範</span>
@@ -20,6 +20,7 @@
       return{
         //控制显示颜色状态
         useActive:true,
+        backTo:"/memberpoint"
       }
     },
     methods:{

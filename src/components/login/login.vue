@@ -8,7 +8,7 @@
     <div class="login_input_contnet">
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
-      <div id="appleid-signin login_item" class="signin-button" @click="auth('apple')">使用Apple登入</div>
+      <div id="appleid-signin login_item" class="signin-button" v-if="isIos13" @click="auth('apple')">使用Apple登入</div>
       <p class="line">
         <span class="line_or">或</span>
       </p>
@@ -58,18 +58,13 @@
     </div>
   </div>
 </template>
+
 <script>
-//苹果登录
-// import AppleButton from '@/assets/js/appleButton';
 //先引入接口
 import { loginReq, SocialLogin } from "@/apis/Login";
 import SendMessageToApp from "../../jsAppInteractive/index3.js";
-
 import {
   checkMail,
-  register,
-  UpdateMember,
-  socialRegisterMember,
   sendActiveMail,
   sendAllMail
 } from "@/apis/register";
@@ -93,9 +88,11 @@ export default {
       },
       fixdtop: "",
       isClosePage:false,
+      isIos13:false
     };
   },
   methods: {
+    //改变密码输入框密码模式
     changeType: function() {
       this.form.pwdType = !this.form.pwdType; //跟着小眼睛变化，密碼框隐藏显示文本框，内容就显示了
       if (this.form.pwdType) {
@@ -104,6 +101,7 @@ export default {
         this.form.eyeImg = require("../../assets/img/eye.png");
       }
     },
+    //正则 检测邮箱格式
     validateMaill(mail) {
       //邮箱格式
       var reg = /^([a-zA-Z]|[0-9])(\w|\-|\.)+@[a-zA-Z0-9|\-]+(\.([a-zA-Z0-9]{2,4}))+$/;
@@ -114,11 +112,13 @@ export default {
         return true;
       }
     },
+    //接口返回报错信息 继续按钮是否变红索引
     $Message(errorifo) {
       this.message.errorStr = errorifo;
       this.message.errortype = true;
       return false;
     },
+    //原生相关
     auth(network) {
       var loginMethod = 0;
       switch (network) {
@@ -165,36 +165,27 @@ export default {
         //浏览器测试 - 模拟数据
 
         // let unionID = "dadwqddsafafawafdasdw";
-        // let unionID = "weiyibiaoshi";
-        // // var email = "guozhifu580230@gmail.com";
-        // var email = "chenhongbiao@tomonline-inc.com";
-        // var providerKey = "1111111111322sdfdsfds";
-        // var userName = "黄健";
-        // console.log("111");
-        // this.sendUserInformation(unionID, userName, email, loginMethod);
+        let unionID = "huangjian";
+        // var email = "guozhifu580230@gmail.com";
+        var email = "huangjian@tomonline-inc.com";
+        // var email = "";
+        var userName = "lufyy";
+        this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
-    //第三方登录
+    /**
+     * 第三方登录
+     * @param id:string        唯一标识
+     * @param userName:string  用户名
+     * @param email:string     邮箱地址
+     * @param loginType:number  登录方式 2 google 3 facebook 4 apple
+     */
     sendUserInformation(id, userName, email, loginType) {
-      // alert(
-      //   "id:" +
-      //     id +
-      //     ",userName:" +
-      //     userName +
-      //     ", email:" +
-      //     email +
-      //     ",loginType:" +
-      //     loginType
-      // );
       this.form.type = loginType;
       let unionID = id;
-      console.log(id);
-      console.log(unionID);
       var email = email;
       var providerKey = userName;
       SocialLogin(unionID, loginType, providerKey, email).then(res => {
-        // alert("socialLogin"+ JSON.stringify(res.data));
-
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
           let token = res.data.jDate.Token;
@@ -235,16 +226,6 @@ export default {
             // this.sso.loginType = loginType;
             // this.sso.providerKey = providerKey;
             // this.form.userName = userName;
-            // alert(
-            //   "unionId:" +
-            //     unionID +
-            //     "email:" +
-            //     email +
-            //     "loginType:" +
-            //     loginType +
-            //     "providerKey" +
-            //     providerKey
-            // );
 
             this.$store.commit("ssoUnionId", unionID);
             this.$store.commit("ssoEmail", email);
@@ -282,7 +263,7 @@ export default {
             });
           }else{
             this.$router.push({
-              name: "register",
+              name: "RegisterEmail",
               params: {
                 loginType: this.form.type,
                 email: email,
@@ -292,18 +273,10 @@ export default {
               }
             });
           }
-          //目前只有两种情况
-          // else {
-          //   // this.goOne(0);
-
-          //   this.$router.push({
-          //     name: "register"
-          //   });
-          // }
-
         }
       });
     },
+    //点击登录按钮
     loginHandle(acount, password) {
       if (acount == "") {
         return this.$Message("帳號不能為空");
@@ -319,19 +292,15 @@ export default {
             let Email = res.data.jDate.Email;
             this.$store.commit("LOGIN", token);
             this.$store.commit("EMAIL", Email);
-            // console.log(this.$route.query.redirect);
             // const redirect =this.$route.query.redirect;
             if(this.$store.state.native.gotoLogin){
                   this.closePage();
             }else{
               this.$router.push("/");
             }
-
           } else if (res.data.errorCode == "204") {
             this.$Message("帳號未驗證");
-
             //验证未激活状态
-
             sendActiveMail(acount, "emailCheck").then(res => {
               if (res.data.errorCode == "200") {
                 this.$store.state.form.acount = acount;
@@ -353,7 +322,6 @@ export default {
               }
             });
           } else if (res.data.errorCode == "505") {
-            // this.$Message("帳號未驗證");
             this.$Message("帳號未驗證");
           } else {
             this.$Message("帳號或密碼輸入錯誤");
@@ -368,6 +336,7 @@ export default {
         return true;
       }
     },
+    //跳转路由
     gotoRegister() {
       this.$router.push("register");
     },
@@ -432,7 +401,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$store.state.form)
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
       //第三方回调
@@ -451,6 +419,7 @@ export default {
 
     this.$store.commit("setNative", gotoLogin);
     this.isClosePage = this.$store.state.native.gotoLogin;
+    console.log("token==",this.$store.state.token)
     if(this.$store.state.isLogin){
       this.$router.push("/");
     }
@@ -460,22 +429,13 @@ export default {
     window.sendUserInformation = this.sendUserInformation;
     window.getActionBar = this.getActionBar; //第三方回调
     window.addEventListener("scroll", this.handleScroll);
-    this.$bridge.registerhandler(
-      "sendUserInformation",
-      (data, responseCallback) => {
-        var id = data["id"];
-        var userName = data["userName"];
-        var email = data["email"];
-        var loginType = data["loginType"];
-        this.sendUserInformation(id, userName, email, loginType);
-      }
-    );
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
+
 <style scoped>
 #header {
   width: 100%;
@@ -687,12 +647,7 @@ span.errorinfo {
 /*  苹果登录*/
 .signin-button {
   width: 600px;
-  /*height: 88px;*/
-  /*border-radius: 4px;*/
-  /*overflow: hidden;*/
   margin: 0 auto;
-  /*background: #000;*/
-
   font-family: PingFangHK-Semibold, sans-serif;
   font-size: 32px; /*drp*/
   color: #fff;
