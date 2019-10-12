@@ -398,6 +398,19 @@ export default {
           window.webkit.messageHandlers.goToIndex.postMessage(data);
         }
       }
+    },
+    setIosVersion(data){
+       if (browserVerify.verifyBW()) {
+          if (browserVerify.verifyAndroid()) {
+            this.isIos13 = false;
+          } else if (browserVerify.verifyIos()) {
+            if(data<13){
+                this.isIos13 = false;
+            }else{
+              this.isIos13 = true;
+            }
+          }
+        }
     }
   },
   created() {
@@ -415,6 +428,10 @@ export default {
       if(origin == "navi"){
           gotoLogin=true;
       }
+      if (browserVerify.verifyIos()) { //获取apple 版本号来显示隐藏 apple 登录
+          //判断IOS
+          window.webkit.messageHandlers.getIosVersion.postMessage("");
+      }
     }
 
     this.$store.commit("setNative", gotoLogin);
@@ -423,6 +440,7 @@ export default {
     if(this.$store.state.isLogin){
       this.$router.push("/");
     }
+    window.setIosVersion = this.setIosVersion;
   },
   mounted() {
     let BW =this;
@@ -653,7 +671,7 @@ span.errorinfo {
   color: #fff;
   text-align: center;
   background-color: #000;
-  background-image: url("../../assets/img/google@2x.png");
+  background-image: url("../../assets/img/apple.png");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;
