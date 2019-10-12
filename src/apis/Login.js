@@ -17,7 +17,7 @@ export function loginReq(username,password) {
 export function loginOut() {
     try {
         return request.post('/Member/LogOut',{
-            token: store.state.token,
+            token:Cookie.getCookie(document.cookie,'token'),
         })
     } catch (error) {
         return error;

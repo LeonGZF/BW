@@ -125,10 +125,32 @@
           v.busy = false;
         })
 
+      },
+       setActionbar() {
+      if (browserVerify.verifyAndroid()) {
+        //判断是android
+        SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
+      } else if (browserVerify.verifyIos()) {
+        //判断IOS
+        window.webkit.messageHandlers.setActionBar.postMessage(this.getActionBar());
       }
     },
+    getActionBar() {
+      var data = new Object();
+      var rightButtonArry = new Array();
+      var leftButtonArry = new Array();
+      data.title = "";
+      data.type = 4;
+      data.backgroundColor = "";
+      data.behavior = 0;
+      data.rightButton = rightButtonArry;
+      data.leftButton = leftButtonArry;
+      return data;
+    },
+    },
     mounted() {
-      this.getInfo()
+      this.getInfo();
+      this.setActionbar();
     }
 
   }
