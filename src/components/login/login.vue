@@ -417,14 +417,10 @@ export default {
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
       //第三方回调
-      this.$bridge.registerhandler("getActionBar", function(
-        data,
-        responseCallback
-      ) {
-        responseCallback(this.getActionBar());
-      });
       this.setActionbar();
       var origin = this.$route.query.origin;
+      var originUrl = this.$route.query.originUrl
+      console.log("11111111111111");
       if(origin == "navi"){
           gotoLogin=true;
       }
@@ -435,6 +431,7 @@ export default {
     }
 
     this.$store.commit("setNative", gotoLogin);
+    this.$store.commit("setOriginUrl", originUrl);
     this.isClosePage = this.$store.state.native.gotoLogin;
     console.log("token==",this.$store.state.token)
     if(this.$store.state.isLogin){
