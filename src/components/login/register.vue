@@ -623,12 +623,6 @@ export default {
   width: 750px;
   height: 8px;
 }
-.progress .bar {
-  width: 140.6px;
-  height: 8px;
-  background: #cd0505;
-  float: left;
-}
 .info_email {
   margin: 0 4px;
 }

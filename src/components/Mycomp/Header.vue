@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header_component">
     <div class="header_nav">
       <span v-if="title" class="title">
         {{title}}
@@ -39,7 +39,7 @@
 
 //  @fullWidth: 750px;
   //@headerHeight: 88px;
-  .header {
+  .header_component {
     width: @fullWidth;
     height: 80px;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, .1);

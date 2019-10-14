@@ -119,7 +119,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .progress .bar {
   width: 140.6px;
   height: 8px;
