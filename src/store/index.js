@@ -137,7 +137,7 @@ const mutations = {
   setNative:(state,data) =>{
     state.native.gotoLogin = data
   },
-  setNative:(state,data) =>{
+  setOriginUrl:(state,data) =>{
     state.native.originUrl = data
   },
 

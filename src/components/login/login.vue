@@ -192,6 +192,7 @@ export default {
           let Email = res.data.jDate.Email;
           this.$store.commit("LOGIN", token);
           this.$store.commit("EMAIL", Email);
+        
           if(this.$store.state.native.gotoLogin){
               this.closePage();
           }else{
