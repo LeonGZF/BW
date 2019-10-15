@@ -31,6 +31,7 @@
             <span slot="right" style="display:block;">
               <img v-if="thirdPart.includes('3')>0" src="../../assets/img/google.png" />
               <img v-if="thirdPart.includes('2')>0" src="../../assets/img/facebook2.png" />
+              <img v-if="thirdPart.includes('5')>0" src="../../assets/img/line2.png" />
             </span>
           </cell-item-label>
           <cell-item-label arrow type="link" href="/changepwd">
