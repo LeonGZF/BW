@@ -1,0 +1,21 @@
+html,
+body,
+.yd-cell-box {
+  background-color: #252525 !important;
+}
+.yd-cell-box:after {
+  background-color: #424242 !important;
+}
+.yd-cell-title,
+.yd-cell-right {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+.yd-cell-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-color: #424242 !important;
+}
+#header,
+.line_or {
+  background-color: #252525 !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}

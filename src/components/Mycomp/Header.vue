@@ -41,7 +41,7 @@
   //@headerHeight: 88px;
   .header_component {
     width: @fullWidth;
-    height: 80px;
+    height:@headerHeight;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, .1);
 
     .header_nav {
