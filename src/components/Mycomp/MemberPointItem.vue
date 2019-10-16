@@ -28,6 +28,8 @@
             return "分享1篇文章";
           case "3":
             return "閱讀分享1篇文章";
+          case "100":
+            return "兌換1篇文章";
         }
       },
       fomatDate(){

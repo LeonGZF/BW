@@ -9,6 +9,8 @@
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
       <div id="appleid-signin" class="signin-button login_item" v-if="isIos13" @click="auth('apple')">使用Apple登入</div>
+       <div id="appleid-signin" class="login_line login_item"  @click="auth('line')">使用LINE登入</div>
+
       <p class="line">
         <span class="line_or">或</span>
       </p>
@@ -131,6 +133,9 @@ export default {
         case "apple":
           loginMethod = 4;
           break;
+        case "line":
+          loginMethod = 5;
+          break;
       }
       // 1.传入参数给手机端 是那个点击 2 google 3 facebook 4 apple
       console.log("loginMethod" + loginMethod);
@@ -192,6 +197,7 @@ export default {
           let Email = res.data.jDate.Email;
           this.$store.commit("LOGIN", token);
           this.$store.commit("EMAIL", Email);
+        
           if(this.$store.state.native.gotoLogin){
               this.closePage();
           }else{
@@ -417,14 +423,10 @@ export default {
     var gotoLogin = false;
     if (browserVerify.verifyBW()) {
       //第三方回调
-      this.$bridge.registerhandler("getActionBar", function(
-        data,
-        responseCallback
-      ) {
-        responseCallback(this.getActionBar());
-      });
       this.setActionbar();
       var origin = this.$route.query.origin;
+      var originUrl = this.$route.query.originUrl
+      console.log("11111111111111");
       if(origin == "navi"){
           gotoLogin=true;
       }
@@ -435,6 +437,7 @@ export default {
     }
 
     this.$store.commit("setNative", gotoLogin);
+    this.$store.commit("setOriginUrl", originUrl);
     this.isClosePage = this.$store.state.native.gotoLogin;
     console.log("token==",this.$store.state.token)
     if(this.$store.state.isLogin){
@@ -517,6 +520,23 @@ export default {
   text-align: center;
   background-color: #fff;
   background-image: url("../../assets/img/google@2x.png");
+  background-size: 56px 56px;
+  background-position: 32px center;
+  background-repeat: no-repeat;
+  line-height: 88px;
+  -moz-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px !important;
+}
+.login_line {
+  font-family: PingFangHK-Semibold, sans-serif;
+  font-size: 32px; /*drp*/
+  color: #fff;
+  /* color: #58bf38; */
+  text-align: center;
+  background-color: #58bf38;
+  background-image: url("../../assets/img/line.png");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;

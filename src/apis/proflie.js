@@ -18,7 +18,7 @@ export function getThirdMessage (){
 export function updatePassword (Password,ConfirmPassword){
     try {
         return request.post('/userCenter/UpdatePassword',{
-            token: store.state.token,
+            token: Cookie.getCookie(document.cookie,'token'),
             Password:Password,
             ConfirmPassword:ConfirmPassword,
             email:store.state.Email
@@ -31,7 +31,7 @@ export function updatePassword (Password,ConfirmPassword){
 export function findUserMessage (){
     try {
         return request.post('/userCenter/findUserMessage',{
-            token: store.state.token,
+            token: Cookie.getCookie(document.cookie,'token'),
         })
     } catch (error) {
         return error;
@@ -41,7 +41,7 @@ export function findUserMessage (){
 export function updateUserMessage (realName,sex,birthDay,mobile){
     try {
         return request.post('/userCenter/updateUserMessage',{
-            token: store.state.token,
+            token: Cookie.getCookie(document.cookie,'token'),
             realName:realName,
             sex:sex,
             birthDay:birthDay,

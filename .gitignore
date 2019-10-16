@@ -16,3 +16,4 @@ yarn-error.log*
 dist.zip
 package-lock.json
 .gitignore
+config/index.js
