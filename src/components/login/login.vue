@@ -90,7 +90,8 @@ export default {
       },
       fixdtop: "",
       isClosePage:false,
-      isIos13:false
+      isIos13:false,
+      isGoback:false,
     };
   },
   methods: {
@@ -392,16 +393,27 @@ export default {
     },
     closePage(){
       if (browserVerify.verifyBW()) {
-        let data = new Object()
-        data.url="";
-        data.index=0;
-        data.action=0;
-        if (browserVerify.verifyAndroid()) {
-          //判断是android
-          SendMessageToApp("goToIndex", JSON.stringify(data));
-        } else if (browserVerify.verifyIos()) {
-          //判断IOS
-          window.webkit.messageHandlers.goToIndex.postMessage(data);
+        if(this.isGoback){
+          if (browserVerify.verifyAndroid()) {
+            //判断是android
+            SendMessageToApp("back", JSON.stringify());
+          } else if (browserVerify.verifyIos()) {
+            //判断IOS
+            window.webkit.messageHandlers.back.postMessage('');
+          }
+        }else{
+        
+          let data = new Object()
+          data.url="";
+          data.index=0;
+          data.action=0;
+          if (browserVerify.verifyAndroid()) {
+            //判断是android
+            SendMessageToApp("goToIndex", JSON.stringify(data));
+          } else if (browserVerify.verifyIos()) {
+            //判断IOS
+            window.webkit.messageHandlers.goToIndex.postMessage(data);
+          }
         }
       }
     },
@@ -421,14 +433,18 @@ export default {
   },
   created() {
     var gotoLogin = false;
+    var goBack = false;
     if (browserVerify.verifyBW()) {
       //第三方回调
       this.setActionbar();
       var origin = this.$route.query.origin;
       var originUrl = this.$route.query.originUrl
-      console.log("11111111111111");
+      console.log("11111111111111"+origin);
       if(origin == "navi"){
           gotoLogin=true;
+      }if(origin == "payment"){
+          gotoLogin=true;
+          goBack=true;
       }
       if (browserVerify.verifyIos()) { //获取apple 版本号来显示隐藏 apple 登录
           //判断IOS
@@ -438,7 +454,10 @@ export default {
 
     this.$store.commit("setNative", gotoLogin);
     this.$store.commit("setOriginUrl", originUrl);
+    this.$store.commit("setGoBack", goBack);
     this.isClosePage = this.$store.state.native.gotoLogin;
+    this.isGoback = this.$store.state.native.goBack;
+
     console.log("token==",this.$store.state.token)
     if(this.$store.state.isLogin){
       this.$router.push("/");
