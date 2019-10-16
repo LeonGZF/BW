@@ -2,7 +2,7 @@
   <div id="member_point">
 
     <Header title="會員點數" :backTo="backTo">
-      <img src="@/assets/img/infoNormal@2x.png" alt="" slot="right" @click="aa">
+<!--      <img src="@/assets/img/infoNormal@2x.png" alt="" slot="right" @click="aa">-->
     </Header>
 
     <div class="member_point_title">
@@ -115,7 +115,7 @@
           console.log(v.infoArr);
           if (res.data.errorCode == "200") {
             let resArr = res.data.jDate.page.result;
-            if (resArr.length == 0) {
+            if (resArr.length < 10) {
               return
             }
             for (let i = 0; i < resArr.length; i++) {

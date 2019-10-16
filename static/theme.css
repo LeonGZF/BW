@@ -1,0 +1,24 @@
+body,html{
+  background-color: rgb(37, 37, 37) !important;
+}
+.yd-cell-box {
+  background-color: rgb(37, 37, 37) !important;
+}
+.yd-cell-box:after {
+  background-color: rgb(66, 66, 66) !important;
+}
+.yd-cell-title {
+  color: rgba(255, 255, 255, .85) !important;
+}
+.yd-cell-item{
+  color: rgba(255, 255, 255, .85) !important;
+  border-color: rgb(66, 66, 66) !important;
+}
+.yd-cell-right {
+  color: rgba(255, 255, 255, .85) !important;
+}
+#header,.line_or{
+    background-color: rgb(37, 37, 37) !important;
+  color: rgba(255, 255, 255, .85) !important;
+}
+

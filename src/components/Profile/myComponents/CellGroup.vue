@@ -11,7 +11,8 @@
 <script type="text/babel">
 export default {
   name: "cell-group",
-  props: ["title"]
+  props: ["title"],
+
 };
 </script>
 
