@@ -151,6 +151,7 @@
     },
     },
     mounted() {
+      this.getInfo();
       console.log("sssss"+this.getActionBar);
     if (browserVerify.verifyBW()) {
       this.setActionbar();
