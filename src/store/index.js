@@ -32,7 +32,8 @@ const state = {
   },
   native:{
     gotoLogin:false,
-    originUrl:""
+    originUrl:"",
+    goBack:false
   },
 };
 const mutations = {
@@ -139,6 +140,9 @@ const mutations = {
   },
   setOriginUrl:(state,data) =>{
     state.native.originUrl = data
+  },
+  setGoBack:(state,data) =>{
+    state.native.goBack = data
   },
 
   //sso
