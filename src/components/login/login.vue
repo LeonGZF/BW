@@ -202,7 +202,7 @@ export default {
           if(this.$store.state.native.gotoLogin){
               this.closePage();
           }else{
-            this.$router.push("/");
+              this.$router.replace("/");
           }
         } else if (res.data.errorCode == "403") {
           this.$Message("第三方帳號未驗證");
@@ -303,7 +303,7 @@ export default {
             if(this.$store.state.native.gotoLogin){
                   this.closePage();
             }else{
-              this.$router.push("/");
+              this.$router.replace("/");
             }
           } else if (res.data.errorCode == "204") {
             this.$Message("帳號未驗證");
