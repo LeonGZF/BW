@@ -172,11 +172,11 @@ export default {
 
         // let unionID = "dadwqddsafafawafdasdw";
         let unionID = "11111111";
-        // var email = "guozhifu580230@gmail.com";
-        // var email = "huangjian@tomonline-inc.com";
+        var email = "guozhifu580230@gmail.com";
+        var email = "huangjian@tomonline-inc.com";
         var email = "";
         var userName = "lufyy";
-        this.sendUserInformation(unionID, userName, email, loginMethod);
+        // this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     /**
