@@ -226,6 +226,11 @@ export default {
             }
           });
         } else {
+            this.$store.commit("ssoUnionId", unionID);
+            this.$store.commit("ssoEmail", email);
+            this.$store.commit("ssoLoginType", loginType);
+            this.$store.commit("ssoProviderKey", providerKey);
+            this.$store.commit("ssoUserName", userName);
           if (email) {
             //this.form.acount = email;
             // this.sso.unionId = unionId;
@@ -233,12 +238,7 @@ export default {
             // this.sso.loginType = loginType;
             // this.sso.providerKey = providerKey;
             // this.form.userName = userName;
-
-            this.$store.commit("ssoUnionId", unionID);
             this.$store.commit("ssoEmail", email);
-            this.$store.commit("ssoLoginType", loginType);
-            this.$store.commit("ssoProviderKey", providerKey);
-            this.$store.commit("ssoUserName", userName);
 
             this.$store.commit("rEmail", email);
             this.$store.commit("rUserName", userName);
