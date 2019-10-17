@@ -11,7 +11,7 @@
       <div class="input_content">
         <div>
           <div class="input_title">帳號</div>
-          <div class="acount_info">{{sso.email}}</div>
+          <input class="pwdios" v-model="sso.email" placeholder="example@mail.com">
           <div class="input_title">密碼</div>
           <div class="input_item">
             <input
@@ -200,4 +200,15 @@ export default {
   width: 48px;
   height: 48px;
 }
+  .pwdios{
+    height: 0.746667rem;
+    width: 8.4rem;
+    padding: 0.213333rem 0.266667rem;
+    line-height: 0.746667rem;
+    font-size: 0.373333rem;
+    letter-spacing: 0.026667rem;
+    background-color: #f6f6f6 !important;
+    border-radius: 0.053333rem;
+    color: #424242;
+  }
 </style>

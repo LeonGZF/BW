@@ -22,14 +22,16 @@ import RegisterEmail from '@/components/login/register/RegisterEmail'
 import RegisterPwd from '@/components/login/register/RegisterPwd'
 import RegisterTrueName from '@/components/login/register/RegisterTrueName'
 import RegisterSex from '@/components/login/register/RegisterSex'
-// import RegisterExist from '@/components/login/register/RegisterExist'
 import RegisterMobile from '@/components/login/register/RegisterMobile'
 import RegisterBirthday from '@/components/login/register/RegisterBirthday'
 import RegisterSendEmail from '@/components/login/register/RegisterSendEmail'
+// import RegisterExist from '@/components/login/register/RegisterExist'
 
 //第三方登录
 import RegisterEmailThirdpart from '@/components/login/register/RegisterEmailThirdpart'
+import RegisterEmailThirdpartIos from '@/components/login/register/RegisterEmailThirdpartIos'
 import RegisterEmailOther from '@/components/login/register/RegisterEmailOther'
+import RegisterPwdThirdIos from '@/components/login/register/RegisterPwdThirdIos'
 import RegisterPwdThird from '@/components/login/register/RegisterPwdThird'
 import RegisterBindSuccess from '@/components/login/register/RegisterBindSuccess'
 
@@ -129,6 +131,11 @@ const router = new Router({
           component: RegisterEmailThirdpart,
         },
         {
+          path: '/register/emailthirdios',
+          name: 'RegisterEmailThirdpartIos',
+          component: RegisterEmailThirdpartIos,
+        },
+        {
           path: '/register/emailother',
           name: 'RegisterEmailOther',
           component: RegisterEmailOther,
@@ -137,6 +144,10 @@ const router = new Router({
           path: '/register/pwdthird',
           name: 'RegisterPwdThird',
           component: RegisterPwdThird,
+        },{
+          path: '/register/pwdthirdios',
+          name: 'RegisterPwdThirdIos',
+          component: RegisterPwdThirdIos,
         },
         {
           path: '/register/bind',

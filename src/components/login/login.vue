@@ -172,8 +172,8 @@ export default {
         // let unionID = "dadwqddsafafawafdasdw";
         let unionID = "huangjian";
         // var email = "guozhifu580230@gmail.com";
-        var email = "huangjian@tomonline-inc.com";
-        // var email = "";
+        // var email = "huangjian@tomonline-inc.com";
+        var email = "";
         var userName = "lufyy";
         this.sendUserInformation(unionID, userName, email, loginMethod);
       }
@@ -269,7 +269,7 @@ export default {
             });
           }else{
             this.$router.push({
-              name: "RegisterEmail",
+              name: "RegisterEmailThirdpartIos",
               params: {
                 loginType: this.form.type,
                 email: email,
