@@ -394,9 +394,14 @@ export default {
     closePage(){
       if (browserVerify.verifyBW()) {
         if(this.isGoback){
+          let data={
+             action:1,
+             event:"payArchive"
+          }
+
           if (browserVerify.verifyAndroid()) {
             //判断是android
-            SendMessageToApp("back", JSON.stringify());
+            SendMessageToApp("back", JSON.stringify(data));
           } else if (browserVerify.verifyIos()) {
             //判断IOS
             window.webkit.messageHandlers.back.postMessage('');
