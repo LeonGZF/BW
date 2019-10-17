@@ -171,12 +171,12 @@ export default {
         //浏览器测试 - 模拟数据
 
         // let unionID = "dadwqddsafafawafdasdw";
-        let unionID = "huangjian";
-        // var email = "guozhifu580230@gmail.com";
-        // var email = "huangjian@tomonline-inc.com";
+        let unionID = "11111111";
+        var email = "guozhifu580230@gmail.com";
+        var email = "huangjian@tomonline-inc.com";
         var email = "";
         var userName = "lufyy";
-        this.sendUserInformation(unionID, userName, email, loginMethod);
+        // this.sendUserInformation(unionID, userName, email, loginMethod);
       }
     },
     /**

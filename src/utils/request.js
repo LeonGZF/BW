@@ -56,7 +56,17 @@ service.interceptors.request.use(config => {
     // 请求错误时做些事(接口错误、超时等)
     // Tip: 4
     // 关闭loadding
-    
+    if(browserVerify.verifyBW()){
+        var isloading =new Object();
+        isloading.loading=false;
+        if(browserVerify.verifyAndroid()){
+            SendMessageToApp("setLoading",JSON.stringify(isloading))
+        }
+        if(browserVerify.verifyIos()){
+            //判断IOS
+            window.webkit.messageHandlers.setLoading.postMessage(isloading);
+        }
+    }
     console.log('request:', error);
     return Promise.reject(error) // 在调用的那边可以拿到(catch)你想返回的错误信息
 })
@@ -114,6 +124,17 @@ service.interceptors.response.use(
         //     type: 'error',
         //     duration: 5 * 1000
         // })
+        if(browserVerify.verifyBW()){
+            var isloading =new Object();
+            isloading.loading=false;
+            if(browserVerify.verifyAndroid()){
+                SendMessageToApp("setLoading",JSON.stringify(isloading))
+            }
+            if(browserVerify.verifyIos()){
+                //判断IOS
+                window.webkit.messageHandlers.setLoading.postMessage(isloading);
+            }
+        }
         return Promise.reject(error)
     })
 
