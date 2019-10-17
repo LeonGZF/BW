@@ -54,6 +54,8 @@
   Vue.component(MemberPointGroup.name, MemberPointGroup);
   import {getMembershipPointInfo, getPointHistoryActionList} from '@/apis/memberPoint';
   import myTools from "@/assets/js/myTools";
+  import SendMessageToApp from "@/jsAppInteractive/index3.js";
+  import { browserVerify } from "@/utils/browserUtil";
 
   export default {
     name: "MemberPoint",
@@ -126,7 +128,7 @@
         })
 
       },
-       setActionbar() {
+    setActionbar() {
       if (browserVerify.verifyAndroid()) {
         //判断是android
         SendMessageToApp("setActionBar", JSON.stringify(this.getActionBar()));
@@ -141,7 +143,7 @@
       var leftButtonArry = new Array();
       data.title = "";
       data.type = 4;
-      data.backgroundColor = "";
+      data.backgroundColor = "#FFFFFF";
       data.behavior = 0;
       data.rightButton = rightButtonArry;
       data.leftButton = leftButtonArry;
@@ -150,8 +152,12 @@
     },
     mounted() {
       this.getInfo();
+      console.log("sssss"+this.getActionBar);
+    if (browserVerify.verifyBW()) {
       this.setActionbar();
+      window.getActionBar = this.getActionBar; //第三方回调
     }
+  },
 
   }
 
