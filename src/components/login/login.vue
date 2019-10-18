@@ -460,7 +460,7 @@ export default {
 
     console.log("token==",this.$store.state.token)
     if(this.$store.state.isLogin){
-      this.$router.push("/");
+      this.$router.replace("/");
     }
     window.setIosVersion = this.setIosVersion;
   },

@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     backLogin() {
-      this.$router.push("/");
+      this.$router.replace("/");
     }
   },
     activated() {
