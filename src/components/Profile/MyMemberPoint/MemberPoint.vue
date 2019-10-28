@@ -80,7 +80,7 @@
       aa() {
         this.$router.push("/memberpointnews")
       },
-      getInfo() {
+      updateData() {
         let v = this;
         getMembershipPointInfo().then(function (res) {
           console.log(v.infoArr);
@@ -151,7 +151,8 @@
     },
     },
     mounted() {
-      this.getInfo();
+      this.updateData();
+      window.updateData = this.updateData();
       console.log("sssss"+this.getActionBar);
     if (browserVerify.verifyBW()) {
       this.setActionbar();

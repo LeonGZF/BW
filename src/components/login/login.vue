@@ -40,7 +40,7 @@
     </div>
     <div class="forget_content">
       <span class="forget_pass" @click="forgotPass()">忘記密碼</span>
-      <!-- <span class="forget_account">忘记账号</span> -->
+      <!-- <span class="forget_account">忘記账号</span> -->
     </div>
     <div class="info_content">
       <div class="info">
