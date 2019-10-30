@@ -152,13 +152,16 @@
     },
     mounted() {
       this.updateData();
-      window.updateData = this.updateData();
+      
       console.log("sssss"+this.getActionBar);
     if (browserVerify.verifyBW()) {
       this.setActionbar();
       window.getActionBar = this.getActionBar; //第三方回调
     }
   },
+  created(){
+    window.updateData = this.updateData;
+  }
 
   }
 
