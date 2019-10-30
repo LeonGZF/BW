@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-import store from '@/store/index'
+import Cookie from '@/assets/js/cookie'
 
 export function getMembershipPointInfo() {
   try {
