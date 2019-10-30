@@ -24,7 +24,7 @@
     methods: {
       callBack() {
         if(this.backTo){
-          this.$router.push(this.backTo)
+          this.$router.replace(this.backTo)
         }else{
           this.$router.back();
         }

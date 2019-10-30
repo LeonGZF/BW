@@ -99,7 +99,7 @@
               <img src="../../assets/img/eye.png" @click="changeType()" />
             </span>
           </div>
-          <div class="forgetPass" @click="forgetPwd()">忘记密碼</div>
+          <div class="forgetPass" @click="forgetPwd()">忘記密碼</div>
         </div>
         <div class="errorinfo_div" v-if="message.errortype">
           <span class="errorinfo">{{message.errorStr}}</span>
