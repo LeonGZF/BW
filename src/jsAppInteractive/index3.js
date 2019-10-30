@@ -75,7 +75,7 @@ function sendToAndroid(messageName, params) {
       return BW.goToIndex(params);
       break;
     case 'back': //页面跳转
-      return BW.back();
+      return BW.back(params);
       break;
   }
 
