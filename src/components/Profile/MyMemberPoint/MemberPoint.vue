@@ -80,7 +80,7 @@
       aa() {
         this.$router.push("/memberpointnews")
       },
-      getInfo() {
+      updateData() {
         let v = this;
         getMembershipPointInfo().then(function (res) {
           console.log(v.infoArr);
@@ -151,13 +151,17 @@
     },
     },
     mounted() {
-      this.getInfo();
+      this.updateData();
+      
       console.log("sssss"+this.getActionBar);
     if (browserVerify.verifyBW()) {
       this.setActionbar();
       window.getActionBar = this.getActionBar; //第三方回调
     }
   },
+  created(){
+    window.updateData = this.updateData;
+  }
 
   }
 
