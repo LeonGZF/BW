@@ -55,15 +55,6 @@
         </template>
       </cell-group>
 
-      <cell-group title="關於我" v-if="false">
-        <cell-item-label arrow>
-          <span slot="left">生活要事</span>
-        </cell-item-label>
-        <cell-item-label arrow type="link" href="/profile/setting/workexperience">
-          <span slot="left">工作經歷</span>
-        </cell-item-label>
-      </cell-group>
-
       <cell-group title="裝置" v-if="false">
         <cell-item-label>
           <span slot="left">清除暫存</span>
@@ -80,15 +71,6 @@
         </cell-item-label>
         <cell-item-label arrow  type="link" href="/termAndPolicy?cuur=1">
           <span slot="left">隱私權政策與服務條款</span>
-        </cell-item-label>
-        <cell-item-label arrow v-if="false">
-          <span slot="left">給商周Plus評分</span>
-        </cell-item-label>
-        <cell-item-label arrow v-if="false">
-          <span slot="left">聯絡我們</span>
-        </cell-item-label>
-        <cell-item-label arrow v-if="false">
-          <span slot="left">常見問題</span>
         </cell-item-label>
         <cell-item-label v-if="isApp" >
           <span slot="left">目前版本</span>
