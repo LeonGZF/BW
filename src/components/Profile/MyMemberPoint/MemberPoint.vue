@@ -80,7 +80,7 @@
       aa() {
         this.$router.push("/memberpointnews")
       },
-      getInfo() {
+      updateData() {
         let v = this;
         getMembershipPointInfo().then(function (res) {
           console.log(v.infoArr);
@@ -92,6 +92,7 @@
             v.count = res.data.jDate.page.pageNum;
             v.pages = res.data.jDate.page.pages;
             let resArr = res.data.jDate.page.result;
+            v.arr.length=0
             for (let i = 0; i < resArr.length; i++) {
               v.arr.push(resArr[i])
             }
@@ -151,13 +152,17 @@
     },
     },
     mounted() {
-      this.getInfo();
+      this.updateData();
+      
       console.log("sssss"+this.getActionBar);
     if (browserVerify.verifyBW()) {
       this.setActionbar();
       window.getActionBar = this.getActionBar; //第三方回调
     }
   },
+  created(){
+    window.updateData = this.updateData;
+  }
 
   }
 
