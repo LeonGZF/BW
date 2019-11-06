@@ -120,7 +120,7 @@ export default {
             if (res.data.errorCode == "200") {
               if (this.message.continueType || this.message.isNotSet == 0) {
                 this.$router.push({
-                  name: "RegisterSendEmail"
+                  name: "login"
                 });
               }
             } else if (res.data.errorCode == "401") {
