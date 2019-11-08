@@ -9,7 +9,7 @@
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
       <div id="appleid-signin" class="signin-button login_item" v-if="isIos13" @click="auth('apple')">使用Apple登入</div>
-       <div id="appleid-signin" class="login_line login_item"  @click="auth('line')">使用LINE登入</div>
+       <div id="" class="login_line login_item"  @click="auth('line')">使用LINE登入</div>
 
       <p class="line">
         <span class="line_or">或</span>
@@ -404,7 +404,7 @@ export default {
             SendMessageToApp("back", JSON.stringify(data));
           } else if (browserVerify.verifyIos()) {
             //判断IOS
-            window.webkit.messageHandlers.back.postMessage('');
+            window.webkit.messageHandlers.back.postMessage(data);
           }
         }else{
         
