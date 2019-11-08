@@ -42,12 +42,10 @@ const mutations = {
     state.token = data;
     state.isLogin = true;
     sessionStorage.setItem('isLogin', true);
+    Cookie.deleteCookie("token");
     Cookie.setCookie({
       "token": data
     }, 10,'.bwplus.com.tw');
-    Cookie.setCookie({
-      "token": data
-    }, 10);
     var object = new Object();
     object.Token = data;
     var status = new Object();
@@ -78,12 +76,10 @@ const mutations = {
     if(!token){
       //Cookie.deleteCookie("token");
     }else{
+      Cookie.deleteCookie("token");
       Cookie.setCookie({
         "token": token
       }, 10,'.bwplus.com.tw');
-      Cookie.setCookie({
-        "token": token
-      }, 10);
     }
     if (browserVerify.verifyBW()) {
       var object = new Object();

@@ -58,10 +58,15 @@ export default {
    * @param  {字符串} key 想要删除的cookie的键
    * @return {没有返回值}     
    */
-  deleteCookie(key) {
+  deleteCookie(key,domain) {
     let date = new Date();
     date.setTime(date.getTime() - 10000);
-    document.cookie = key + "=" + this.getCookie(document.cookie, key) + "; expires=" + date.toGMTString();
+    let cookieString= key + "=" + this.getCookie(document.cookie, key) + "; expires=" +
+    date.toGMTString();
+    if(domain){
+      cookieString=cookieString+";domain="+domain;
+    }
+    document.cookie = cookieString;
   }
 }
 
