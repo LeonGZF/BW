@@ -6,6 +6,7 @@ var device_id=Cookie.getCookie(document.cookie,"device_id");
 export function loginReq(username,password) {
     try {
         return request.post('/Member/LoginMember',{
+          token:Cookie.getCookie(document.cookie,'token'),
             userName: username,
             password: password,
           deviceId:device_id
@@ -32,13 +33,13 @@ export function tmpLogin() {
         return error;
     }
 }
-export function SocialLogin(sociaId,loginMethod,sociaToken,email) {
+export function SocialLogin(sociaId,loginMethod,email) {
     // alert(email,sociaToken,sociaId,loginMethod)
     try {
         return request.post('/Member/SocialLoginMember',{
             id: sociaId,
             loginMethod: loginMethod,
-            token: sociaToken,
+            token:Cookie.getCookie(document.cookie,'token'),
             email: email,
             deviceId:device_id
 
