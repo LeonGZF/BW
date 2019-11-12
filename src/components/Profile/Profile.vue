@@ -26,12 +26,18 @@
           <span slot="right" class="user_mail">{{ loginEmail == '' ? '登入/註冊': loginEmail}}</span>
         </cell-item-label>
         <template v-if="isLogin">
+<!--        <template v-if="true">-->
           <cell-item-label>
             <span slot="left">社群綁定</span>
             <span slot="right" style="display:block;">
-              <img v-if="thirdPart.includes('3')>0" src="../../assets/img/google.png" />
-              <img v-if="thirdPart.includes('2')>0" src="../../assets/img/facebook2.png" />
-              <img v-if="thirdPart.includes('5')>0" src="../../assets/img/line2.png" />
+<!--              <img class="third_part_logo" src="../../assets/svg/google-brands.svg" />-->
+<!--              <img class="third_part_logo" src="../../assets/svg/facebook-brands.svg" />-->
+<!--              <img class="third_part_logo" src="../../assets/svg/line-brands.svg" />-->
+<!--              <img class="third_part_logo" src="../../assets/svg/apple-brands.svg" />-->
+              <img class="third_part_logo" v-if="thirdPart.includes('3')>0" src="../../assets/svg/google-brands.svg" />
+              <img class="third_part_logo" v-if="thirdPart.includes('2')>0" src="../../assets/svg/facebook-brands.svg" />
+              <img class="third_part_logo" v-if="thirdPart.includes('5')>0" src="../../assets/svg/line-brands.svg" />
+              <img class="third_part_logo" v-if="thirdPart.includes('4')>0" src="../../assets/svg/apple-brands.svg" />
             </span>
           </cell-item-label>
           <cell-item-label arrow type="link" href="/changepwd">
@@ -340,6 +346,14 @@ export default {
     max-width: 580px;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+  .third_part_logo{
+    /*border-radius: 50%;*/
+    margin-top: 5px;
+    width: 45px;
+    height: 45px;
+    float: right;
+    margin-left: 20px;
   }
 </style>
 

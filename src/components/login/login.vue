@@ -8,6 +8,7 @@
     <div class="login_input_contnet">
       <div class="login_fb login_item" @click="auth('facebook')">使用Facebook登入</div>
       <div class="login_gg login_item" @click="auth('google')">使用Google登入</div>
+<!--      <div id="appleid-signin" class="signin-button login_item" @click="auth('apple')">使用Apple登入</div>-->
       <div id="appleid-signin" class="signin-button login_item" v-if="isIos13" @click="auth('apple')">使用Apple登入</div>
        <div id="" class="login_line login_item"  @click="auth('line')">使用LINE登入</div>
 
@@ -530,7 +531,7 @@ export default {
   color: #fff;
   text-align: center;
   background-color: #3065b4;
-  background-image: url("../../assets/img/facebook@2x.png");
+  background-image: url("../../assets/svg/facebook-brands-white.svg");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;
@@ -543,7 +544,7 @@ export default {
   color: #424242;
   text-align: center;
   background-color: #fff;
-  background-image: url("../../assets/img/google@2x.png");
+  background-image: url("../../assets/svg/google-brands.svg");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;
@@ -560,7 +561,7 @@ export default {
   /* color: #58bf38; */
   text-align: center;
   background-color: #58bf38;
-  background-image: url("../../assets/img/line.png");
+  background-image: url("../../assets/svg/line-brands-white.svg");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;
@@ -714,8 +715,8 @@ span.errorinfo {
   font-size: 32px; /*drp*/
   color: #fff;
   text-align: center;
-  background-color: #000;
-  background-image: url("../../assets/img/apple.png");
+  background-color: #8e8e93;
+  background-image: url("../../assets/svg/apple-brands-white.svg");
   background-size: 56px 56px;
   background-position: 32px center;
   background-repeat: no-repeat;
