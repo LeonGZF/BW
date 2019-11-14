@@ -56,7 +56,7 @@ const mutations = {
          window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
          window.webkit.messageHandlers.setLoginStatus.postMessage(status); //TODO   定义原生方法 及参数 
       } else if (browserVerify.verifyAndroid()) { //android
-        SendMessageToApp("saveToken", JSON.stringify(object)); //TODO  定义原生方法 及参数
+        // SendMessageToApp("saveToken", JSON.stringify(object)); //TODO  定义原生方法 及参数
         SendMessageToApp("setLoginStatus", JSON.stringify(status)); //TODO  定义原生方法 及参数
       }
     }
@@ -88,12 +88,12 @@ const mutations = {
       status.login = false;
       if (browserVerify.verifyAndroid()) {
         SendMessageToApp("setLoginStatus", JSON.stringify(status));
-        SendMessageToApp("saveToken", JSON.stringify(object));
+        // SendMessageToApp("saveToken", JSON.stringify(object));
       }
       if (browserVerify.verifyIos()) {
         //判断IOS
          window.webkit.messageHandlers.setLoginStatus.postMessage(status);
-         window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
+        //  window.webkit.messageHandlers.saveToken.postMessage(object); //TODO   定义原生方法 及参数 
       }
     }
     

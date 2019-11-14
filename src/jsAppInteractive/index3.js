@@ -59,9 +59,9 @@ function sendToAndroid(messageName, params) {
     case 'setActionBar': //设置actionbar
       BW.setActionBar(params);
       break;
-    case 'saveToken': //设置saveToken
-      BW.saveToken(params);
-      break;
+    // case 'saveToken': //设置saveToken
+    //   BW.saveToken(params);
+    //   break;
     case 'setLoading': //设置loading 画面的
       BW.setLoading(params);
       break;
