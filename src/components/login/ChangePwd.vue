@@ -106,12 +106,13 @@ export default {
             var token = res.data.jDate.Token;
             console.log("new Token=",token);
              sessionStorage.setItem('isLogin', false);
+             let cookieDomian=process.env.COOKIE_DOMAIN;
             Cookie.setCookie({
                 "token": token
-              }, 10,'.bwplus.com.tw')
+              }, 10,)
             Cookie.setCookie({
                 "token": token
-              }, 10)
+              }, 10,""+cookieDomian+"")
 
             this.$store.commit("TOKEN",token);
           }else{

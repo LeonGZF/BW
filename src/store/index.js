@@ -41,11 +41,12 @@ const mutations = {
     //更改token的值
     state.token = data;
     state.isLogin = true;
+    let cookieDmain=process.env.COOKIE_DOMAIN;
     sessionStorage.setItem('isLogin', true);
     Cookie.deleteCookie("token");
     Cookie.setCookie({
       "token": data
-    }, 10,'.bwplus.com.tw');
+    }, 10,""+cookieDmain+"");
     var object = new Object();
     object.Token = data;
     var status = new Object();
@@ -73,13 +74,15 @@ const mutations = {
     state.isLogin = false;
     sessionStorage.removeItem('isLogin')
     sessionStorage.removeItem('Email');
+    let cookieDmain=process.env.COOKIE_DOMAIN;
+    console.log("cookieDmain  "+cookieDmain);
     if(!token){
       //Cookie.deleteCookie("token");
     }else{
       Cookie.deleteCookie("token");
       Cookie.setCookie({
         "token": token
-      }, 10,'.bwplus.com.tw');
+      }, 10,""+cookieDmain+"");
     }
     if (browserVerify.verifyBW()) {
       var object = new Object();
