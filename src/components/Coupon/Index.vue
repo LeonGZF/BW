@@ -34,6 +34,12 @@
 
           </div>
 
+          <!-- date -->
+          <div class="date">
+            <p>2019/12/1~2020/1/2</p>
+            <p>尚餘 <em>1</em> 件</p>
+          </div>
+
         </a>
 
       </div>
@@ -170,8 +176,10 @@
         this.confirm = false;
         this.doubleConfirm = false;
       },
+
       // 使用者確定兌換後，要執行的動作
       couponAPI() {},
+
       // collapse
       collapse() {
         // 寫入各 .content-box 的高，然後高度設成 0
@@ -221,15 +229,16 @@
 
 <style scoped lang="less">
 
+  // variables
+  @main: #CD0505;
+  @unit-mini: 28px; // 最小單位
+
   // helper class
   .d-block {
     display: block;
   }
   .text-center {
     text-align: center;
-  }
-  .text-main {
-    color: #CD0505
   }
 
 
@@ -240,9 +249,9 @@
   }
   
   .div_title {
-    margin-bottom: 28px;
+    margin-bottom: @unit-mini;
     padding-left: 16px;
-    border-left: 8px solid #cd0505;
+    border-left: 8px solid @main;
     line-height: 40px;
     color: #424242;
     font-weight: bold;
@@ -262,7 +271,7 @@
     padding-left: 16px;
     a {
       margin-bottom: 56px;
-      width: calc(50% - 28px);
+      width: calc(50% - @unit-mini);
     }
     .img {
       width: 100%;
@@ -274,7 +283,6 @@
     }
     .name {
       padding-top: 14px;
-      padding-bottom: 8px;
       line-height: 40px;
       font-size: 30px;
       color: #424242;
@@ -282,11 +290,18 @@
     .info {
       display: flex;
       align-items: center;
-      line-height: 28px;
-      font-size: 28px;
+      line-height: 2;
+      font-size: @unit-mini;
       color: #adadad;
       span {
         text-decoration: line-through;
+      }
+    }
+    .date {
+      line-height: 1.5;
+      color: #757575;
+      em {
+        color: @main;
       }
     }
   }
@@ -340,7 +355,7 @@
     .info {
       padding-top: 64px;
       padding-bottom: 64px;
-      font-size: 28px;
+      font-size: @unit-mini;
       color: #FFF;
     }
 
@@ -378,16 +393,21 @@
     .collapse {
       border-top: 1px solid #FFF;
       line-height: 1.5;
-      font-size: 28px;
+      font-size: @unit-mini;
     }
 
     // collapse title
     .title-box {
       position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 0;
+      padding: @unit-mini 0;
+
+      .title, .icons {
+        pointer-events: none;
+      }
 
       // icons transform active
       &.active .icons {
@@ -407,7 +427,7 @@
       position: absolute;
       right: 12px;
       span {
-        width: 28px;
+        width: @unit-mini;
         height: 4px;
         background-color: #FFF;
         transition: transform .2s ease;
@@ -428,7 +448,7 @@
     }
 
     ol {
-      padding-top: 28px;
+      padding-top: @unit-mini;
       padding-left: 50px;
       list-style: decimal;
       list-style-position: outside;
@@ -458,7 +478,7 @@
       padding-top: 16px;
       padding-bottom: 16px;
       width: 100%;
-      background: #CD0505;
+      background: @main;
       font-size: 32px;
       color: #FFF;
     }
@@ -466,24 +486,24 @@
 
   .confirm-wrap {
     z-index: 3;
-    padding-top: 28px;
+    padding-top: @unit-mini;
     background: #FFF;
     .close {
       position: absolute;
       top: 8px;
-      right: 28px;
+      right: @unit-mini;
       margin-left: auto;
       font-size: 44px;
       color: #aaa;
     }
     strong {
       padding-top: 14px;
-      padding-bottom: 28px;
+      padding-bottom: @unit-mini;
       font-size: 36px;
     }
     small {
-      padding-bottom: 28px;
-      font-size: 28px;
+      padding-bottom: @unit-mini;
+      font-size: @unit-mini;
     }
   }
 
@@ -498,8 +518,8 @@
     justify-content: center;
     align-items: center;
     margin-right: 8px;
-    font-size: 28px;
-    color: #cd0505;
+    font-size: @unit-mini;
+    color: @main;
     &::before {
       content: '';
       display: inline-block;
