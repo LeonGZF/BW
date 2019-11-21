@@ -168,7 +168,11 @@ const router = new Router({
       path: '/changepwd',
       name: 'Changepwd',
       component: Changepwd,
-    },
+    }, {
+      path: '/coupon',
+      name: 'coupon',
+      component: () => import('@/components/Coupon/Index')
+    }
   ]
 });
 
