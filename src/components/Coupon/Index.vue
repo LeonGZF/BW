@@ -14,7 +14,7 @@
 
           <!-- coupon image -->
           <div class="cover">
-            <div class="img" style="background-image: url(https://fakeimg.pl/600x600/)"></div>
+            <div class="img" style="background-image: url(https://ibwec.bwnet.com.tw/images/Product/PROD000011071/PROD000011071.jpg)"></div>
           </div>
 
           <!-- coupon name -->
@@ -54,7 +54,7 @@
         <div class="name">30秒專注力法則</div>
 
         <figure>
-          <img class="d-block" src="https://fakeimg.pl/600x600/" alt="">
+          <img class="d-block" src="https://ibwec.bwnet.com.tw/images/Product/PROD000011071/PROD000011071.jpg" alt="">
         </figure>
 
         <!-- B coin -->
@@ -70,25 +70,29 @@
           <div class="collapse">
             <!-- title-->
             <div class="title-box waves">
-              <div class="title">兌換時間</div>
+              <div class="title">兌換與使用</div>
               <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
             </div>
             <!-- contents-->
             <div class="contents-box">
               <div class="contents">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ducimus, illum vitae nam officia quidem iste maxime provident! Temporibus repellat nulla blanditiis at accusamus minima delectus aut doloribus officia deserunt.</p>
+                <p>兌換期限</p>
+                <p>2019/11/20 10:00 - 2019/12/31 23:59</p>
+                <p>使用期限</p>
+                <p>2020/01/15 23:59</p>
               </div>
             </div>
           </div>
 
           <div class="collapse">
             <div class="title-box waves">
-              <div class="title">獎項使用說明</div>
+              <div class="title">注意事項</div>
               <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
             </div>
             <div class="contents-box">
               <div class="contents">
-                <ul>
+                <p>◆ 使用限制：</p>
+                <ol>
                   <li>使用本券請至萊爾富櫃檯直接出示本券掃碼兌換（請將螢幕亮度調到最大）。</li>
                   <li>若無法成功掃碼，請出示本券兩段條碼序號，由門市人員輸入兌換。</li>
                   <li>使用時須符合本券載明之品牌與規格。商品兌換後，無法提供退貨及換貨。</li>
@@ -102,7 +106,7 @@
                   <li>本券所兌換之商品或折抵消費之金額不予開立統一發票。</li>
                   <li>本券有效與否，以發行人票券系統所記錄之狀態為憑。 如系統因網路連線有所遲延，依兌換商家系統端資訊為準。</li>
                   <li>本券為有價證券，請勿擅自偽造、變造，以免觸犯刑責。</li>
-                </ul>
+                </ol>
               </div>
             </div>
           </div>
@@ -115,7 +119,7 @@
 
     <!-- confirm -->
     <div class="confirm-wrap text-center" :class="{ 'active': doubleConfirm }">
-      <button type="button" class="close" @click="closeConfirm">&times;</button>
+      <button type="button" class="close" @click="closeDbConfirm">&times;</button>
       <strong class="d-block">確認兌換</strong>
       <small class="d-block">使用320商周幣兌換嗎？</small>
       <button type="button" class="button d-block" @click="couponAPI">確認</button>
@@ -131,15 +135,14 @@
 
 
 
-<script>
-  // plugin waves
-  import waveCSS from '../../../node_modules/node-waves/dist/waves.css'
-  import Waves from 'node-waves'
-  
+<script>  
   export default {
     data() {
       return {
-        couponList: [], // 所有coupon的清單
+        
+        couponList: [], // 所有coupon的清單，等API
+        couponDetail: {}, // coupon_deatil的資料，等API
+
         couponDeatilOpen: false, // true：.coupon_deatil會被打開
         confirm: false, // true：確認使用coupon
         doubleConfirm: false // true：再次確認兌換
@@ -150,24 +153,25 @@
       openCouponDeatil() {
         this.couponDeatilOpen = true;
       },
-      // open coupon comfirm
+      // open comfirm info window
       openCouponComfirm() {
         this.confirm = true;
         this.doubleConfirm = true;
       },
-      // close comfirm
+      // close comfirm info window
       closeConfirm() {
         this.couponDeatilOpen = false;
+        this.confirm = false;
+        this.doubleConfirm = false;
+        this.closeCollapse();
+      },
+      // close double confirm info window
+      closeDbConfirm() {
         this.confirm = false;
         this.doubleConfirm = false;
       },
       // 使用者確定兌換後，要執行的動作
       couponAPI() {},
-      // waves effect
-      waves() {
-        Waves.attach('.waves', ['waves-button', 'waves-float', 'waves-light']);
-        Waves.init();
-      },
       // collapse
       collapse() {
         // 寫入各 .content-box 的高，然後高度設成 0
@@ -197,11 +201,19 @@
             }
           });
         });
+      },
+      // 關閉collapse，關閉.coupon_detail後要執行
+      closeCollapse() {
+        const titles = document.querySelectorAll('.title-box');
+        Array.prototype.forEach.call(titles, t => {
+          t.classList.remove('active');
+          const content = t.parentNode.querySelector('.contents-box');
+          content.setAttribute('style', 'height: 0');
+        });
       }
     },
     mounted() {
       this.collapse();
-      this.waves();
     }
   };
 </script>
@@ -216,9 +228,8 @@
   .text-center {
     text-align: center;
   }
-
-  #coupon {
-    position: relative;
+  .text-main {
+    color: #CD0505
   }
 
 
@@ -257,7 +268,7 @@
       width: 100%;
       height: 0;
       padding-bottom: 100%;
-      background-position: center center;
+      background-position: center top;
       background-repeat: no-repeat;
       background-size: cover;
     }
@@ -288,7 +299,7 @@
     bottom: 0;
     left: 0;
     padding-bottom: 50px;
-    background: #000;
+    background: rgba(#434343, .95);
     opacity: 0;
     transform: translateX(100%);
     transition: transform .4s ease-in-out, opacity .4s ease-in-out;
@@ -306,7 +317,7 @@
         width: 66px;
         height: 66px;
         background: transparent;
-        font-size: 40px;
+        font-size: 66px;
         color: #FFF;
       }
     }
@@ -416,10 +427,11 @@
       border-bottom: 1px solid #FFF;
     }
 
-    ul {
-      list-style: disc;
+    ol {
+      padding-top: 28px;
+      padding-left: 50px;
+      list-style: decimal;
       list-style-position: outside;
-      padding-left: 36px;
     }
   }
 
@@ -458,10 +470,10 @@
     background: #FFF;
     .close {
       position: absolute;
-      top: 14px;
+      top: 8px;
       right: 28px;
       margin-left: auto;
-      font-size: 28px;
+      font-size: 44px;
       color: #aaa;
     }
     strong {
