@@ -81,7 +81,7 @@
           <div class="collapse">
             <!-- title-->
             <div class="title-box waves">
-              <div class="title">兌換與使用</div>
+              <div class="title">兌換時間</div>
               <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
             </div>
             <!-- contents-->
@@ -97,12 +97,11 @@
 
           <div class="collapse">
             <div class="title-box">
-              <div class="title">注意事項</div>
+              <div class="title">使用說明</div>
               <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
             </div>
             <div class="contents-box">
               <div class="contents">
-                <p>◆ 使用限制：</p>
                 <ol>
                   <li>使用本券請至萊爾富櫃檯直接出示本券掃碼兌換（請將螢幕亮度調到最大）。</li>
                   <li>若無法成功掃碼，請出示本券兩段條碼序號，由門市人員輸入兌換。</li>
@@ -117,6 +116,25 @@
                   <li>本券所兌換之商品或折抵消費之金額不予開立統一發票。</li>
                   <li>本券有效與否，以發行人票券系統所記錄之狀態為憑。 如系統因網路連線有所遲延，依兌換商家系統端資訊為準。</li>
                   <li>本券為有價證券，請勿擅自偽造、變造，以免觸犯刑責。</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="collapse">
+            <div class="title-box">
+              <div class="title">注意事項</div>
+              <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
+            </div>
+            <div class="contents-box">
+              <div class="contents">
+                <ol>
+                  <li>本兌換券限使用乙次，口味可任選，限加購乙杯</li>
+                  <li>本優惠可於全台十杯分店現場使用，恕無法透過網路或電話訂購</li>
+                  <li>本優惠不得於其他兌換券或十杯現場優惠併用，十杯保留最終解釋權</li>
+                  <li>目錄與營業時間以各分現場為或社群官方帳號公告為主</li>
+                  <li>如遇特定原料缺貨請於使用期限內擇日或選擇其他分店使用</li>
+                  <li>Yahoo奇摩會員中心與十杯極致手作茶飲保留修改、終止或暫停本活動之權利與最終解釋權</li>
                 </ol>
               </div>
             </div>
@@ -229,6 +247,7 @@
 
   // variables
   @main: #CD0505;
+  @yellow: #f4ce44;
   @unit-mini: 28px; // 最小單位
   @unit-lg: 64px; // 最大單位
 
@@ -296,6 +315,11 @@
         text-decoration: line-through;
       }
     }
+
+    .b-coin {
+      color: @main;
+    }
+
     .date {
       line-height: 1.5;
       color: #757575;
@@ -350,6 +374,10 @@
       margin-right: auto;
       margin-left: auto;
       max-width: 100%;
+    }
+    .b-coin {
+      font-size: 36px;
+      color: @yellow;
     }
     .info {
       padding-top: @unit-lg;
@@ -518,7 +546,6 @@
     align-items: center;
     margin-right: 8px;
     font-size: @unit-mini;
-    color: @main;
     &::before {
       content: '';
       display: inline-block;
