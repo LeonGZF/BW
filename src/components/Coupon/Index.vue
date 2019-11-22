@@ -51,7 +51,7 @@
     </div>
 
     <!-- coupon detail -->
-    <div class="coupon_detail text-center" :class="{ 'active': couponDetailOpen, 'overlay': confirmOverlay }">
+    <div class="coupon_detail text-center" :class="{ 'active': couponDetailOpen, 'overlay': confirm }">
 
       <div class="coupon_detail_contents">
 
@@ -130,7 +130,7 @@
 
     <!-- confirm -->
     <div class="confirm-wrap text-center" :class="{ 'active': confirm }">
-      <button type="button" class="close" @click="closeConfirm">&times;</button>
+      <button type="button" class="close" @click="confirm = false">&times;</button>
       <strong class="d-block">確認兌換</strong>
       <small class="d-block">使用320商周幣兌換嗎？</small>
       <button type="button" class="button d-block" @click="couponAPI">確認</button>
@@ -155,7 +155,6 @@
         couponDetail: {}, // coupon_detail的資料，等API
 
         couponDetailOpen: false, // true：.coupon_detail會被打開
-        confirmOverlay: false, // true：確認使用coupon
         confirm: false // true：再次確認兌換
       };
     },
@@ -166,20 +165,13 @@
       },
       // open comfirm info window
       openComfirm() {
-        this.confirmOverlay = true;
         this.confirm = true;
       },
       // close detail modal
       closeDetail() {
         this.couponDetailOpen = false;
-        this.confirmOverlay = false;
         this.confirm = false;
         this.closeCollapse();
-      },
-      // close confirm info window
-      closeConfirm() {
-        this.confirmOverlay = false;
-        this.confirm = false;
       },
 
       // 使用者確定兌換後，要執行的動作
@@ -224,7 +216,7 @@
           content.setAttribute('style', 'height: 0');
         });
       }
-      
+
     },
     mounted() {
       this.collapse();
@@ -238,6 +230,7 @@
   // variables
   @main: #CD0505;
   @unit-mini: 28px; // 最小單位
+  @unit-lg: 64px; // 最大單位
 
   // helper class
   .d-block {
@@ -257,18 +250,18 @@
   .div_title {
     margin-bottom: @unit-mini;
     padding-left: 16px;
+    line-height: 1;
     border-left: 8px solid @main;
-    line-height: 40px;
-    color: #424242;
     font-weight: bold;
     font-size: 40px;
+    color: #424242;
   }
 
+  // coupon list
   .coupon_list_wrap {
     padding: 36px 16px;
   }
 
-  // coupon list
   .coupon_list {
     display: flex;
     flex-wrap: wrap;
@@ -289,7 +282,7 @@
     }
     .name {
       padding-top: 14px;
-      line-height: 40px;
+      line-height: 1.5;
       font-size: 30px;
       color: #424242;
     }
@@ -312,7 +305,7 @@
     }
   }
 
-  // coupon single detail
+  // coupon detail
   .coupon_detail {
     position: fixed;
     top: 0;
@@ -330,7 +323,7 @@
     }
     .top {
       position: relative;
-      margin-bottom: 64px;
+      margin-bottom: @unit-lg;
       .close {
         position: absolute;
         right: 0;
@@ -343,15 +336,15 @@
       }
     }
     .name {
-      margin-bottom: 64px;
+      margin-bottom: @unit-lg;
       font-size: 36px;
       color: #FFF;
     }
     figure {
       display: block;
       margin-bottom: 32px;
-      padding-right: 65px;
-      padding-left: 65px;
+      padding-right: @unit-lg;
+      padding-left: @unit-lg;
     }
     img {
       margin-right: auto;
@@ -359,8 +352,8 @@
       max-width: 100%;
     }
     .info {
-      padding-top: 64px;
-      padding-bottom: 64px;
+      padding-top: @unit-lg;
+      padding-bottom: @unit-lg;
       font-size: @unit-mini;
       color: #FFF;
     }
