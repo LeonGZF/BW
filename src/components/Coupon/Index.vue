@@ -10,11 +10,15 @@
 
       <div class="coupon_list">
 
-        <a class="d-block" href="" v-for="coupon in 6" @click.prevent="openCouponDeatil" :key="coupon">
+        <a class="d-block" href="" v-for="coupon in 6" @click.prevent="openDetail" :key="coupon">
 
           <!-- coupon image -->
           <div class="cover">
-            <div class="img" style="background-image: url(https://ibwec.bwnet.com.tw/images/Product/PROD000011071/PROD000011071.jpg)"></div>
+            <!-- 用背景圖製作 1：1正方形圖片 -->
+            <div
+                class="img"
+                style="background-image: url(https://ibwec.bwnet.com.tw/images/Product/PROD000011071/PROD000011071.jpg)"
+            ></div>
           </div>
 
           <!-- coupon name -->
@@ -47,13 +51,14 @@
     </div>
 
     <!-- coupon detail -->
-    <div class="coupon_detail text-center" :class="{ 'active': couponDeatilOpen, 'overlay': confirm }">
+    <div class="coupon_detail text-center" :class="{ 'active': couponDetailOpen, 'overlay': confirmOverlay }">
 
       <div class="coupon_detail_contents">
 
         <!-- coupon top -->
         <div class="top">
-          <button type="button" class="close" @click="closeConfirm">&times;</button>
+          <!-- close button -->
+          <button type="button" class="close" @click="closeDetail">&times;</button>
         </div>
 
         <!-- coupon name -->
@@ -91,7 +96,7 @@
           </div>
 
           <div class="collapse">
-            <div class="title-box waves">
+            <div class="title-box">
               <div class="title">注意事項</div>
               <div class="icons"><span class="d-block"></span><span class="d-block"></span></div>
             </div>
@@ -124,16 +129,16 @@
     </div>
 
     <!-- confirm -->
-    <div class="confirm-wrap text-center" :class="{ 'active': doubleConfirm }">
-      <button type="button" class="close" @click="closeDbConfirm">&times;</button>
+    <div class="confirm-wrap text-center" :class="{ 'active': confirm }">
+      <button type="button" class="close" @click="closeConfirm">&times;</button>
       <strong class="d-block">確認兌換</strong>
       <small class="d-block">使用320商周幣兌換嗎？</small>
       <button type="button" class="button d-block" @click="couponAPI">確認</button>
     </div>
 
     <!-- fixed bottom button -->
-    <div class="fixed-button" :class="{ 'active': couponDeatilOpen }">
-      <button type="button" class="button d-block" @click="openCouponComfirm">立即兌換</button>
+    <div class="fixed-button" :class="{ 'active': couponDetailOpen }">
+      <button type="button" class="button d-block" @click="openComfirm">立即兌換</button>
     </div>
 
   </section>
@@ -147,34 +152,34 @@
       return {
         
         couponList: [], // 所有coupon的清單，等API
-        couponDetail: {}, // coupon_deatil的資料，等API
+        couponDetail: {}, // coupon_detail的資料，等API
 
-        couponDeatilOpen: false, // true：.coupon_deatil會被打開
-        confirm: false, // true：確認使用coupon
-        doubleConfirm: false // true：再次確認兌換
+        couponDetailOpen: false, // true：.coupon_detail會被打開
+        confirmOverlay: false, // true：確認使用coupon
+        confirm: false // true：再次確認兌換
       };
     },
     methods: {
-      // open coupon detail
-      openCouponDeatil() {
-        this.couponDeatilOpen = true;
+      // open detail modal
+      openDetail() {
+        this.couponDetailOpen = true;
       },
       // open comfirm info window
-      openCouponComfirm() {
+      openComfirm() {
+        this.confirmOverlay = true;
         this.confirm = true;
-        this.doubleConfirm = true;
       },
-      // close comfirm info window
-      closeConfirm() {
-        this.couponDeatilOpen = false;
+      // close detail modal
+      closeDetail() {
+        this.couponDetailOpen = false;
+        this.confirmOverlay = false;
         this.confirm = false;
-        this.doubleConfirm = false;
         this.closeCollapse();
       },
-      // close double confirm info window
-      closeDbConfirm() {
+      // close confirm info window
+      closeConfirm() {
+        this.confirmOverlay = false;
         this.confirm = false;
-        this.doubleConfirm = false;
       },
 
       // 使用者確定兌換後，要執行的動作
@@ -219,6 +224,7 @@
           content.setAttribute('style', 'height: 0');
         });
       }
+      
     },
     mounted() {
       this.collapse();
