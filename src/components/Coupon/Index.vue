@@ -169,7 +169,7 @@
     data() {
       return {
         
-        couponList: [], // 所有coupon的清單，等API
+        couponList: {}, // 所有coupon的清單，等API
         couponDetail: {}, // coupon_detail的資料，等API
 
         couponDetailOpen: false, // true：.coupon_detail會被打開
