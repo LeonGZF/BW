@@ -71,7 +71,7 @@
 
 <style scoped lang="less">
   
-  @unit-mini: 28px; // 最小單位
+  @import '_variables';
 
   // collapse
   .collapse-group {
