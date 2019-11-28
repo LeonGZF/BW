@@ -55,8 +55,8 @@
             <span slot="left">會員資訊</span>
           </cell-item-label>
           <cell-item-label type="link" href="/memberpoint">
-            <span slot="left">會員點數</span>
-            <span slot="right"><span class="memberPoint">{{memberPoint}}</span>點</span>
+            <span slot="left">商周幣明細</span>
+            <span slot="right"><span class="memberPoint">{{memberPoint}}</span>枚</span>
           </cell-item-label>
         </template>
       </cell-group>

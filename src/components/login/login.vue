@@ -192,7 +192,7 @@ export default {
       let unionID = id;
       var email = email;
       var providerKey = userName;
-      SocialLogin(unionID, loginType, providerKey, email).then(res => {
+      SocialLogin(unionID, loginType, email).then(res => {
         if (res.data.errorCode == "200") {
           this.message.errortype = false;
           let token = res.data.jDate.Token;
