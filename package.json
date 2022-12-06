@@ -18,7 +18,7 @@
     "less-loader": "^5.0.0",
     "lib-flexible": "^0.3.2",
     "mint-ui": "^2.2.13",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "vue": "^2.5.2",
     "vue-cookies": "^1.5.13",
     "vue-hellojs": "0.0.4",
